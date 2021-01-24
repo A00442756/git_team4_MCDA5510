@@ -1,0 +1,3 @@
+# A00442756
+def math_max(x: int, y: int):
+    return max(x, y)
