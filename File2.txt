@@ -1,0 +1,4 @@
+#A00445457
+public int mod(int a, int b){
+    return a%b;
+}
