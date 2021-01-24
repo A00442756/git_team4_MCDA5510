@@ -1,3 +1,8 @@
+# A00442756
+def addition(x: int, y: int):
+    return x + y
+
+
 #A00445457
 Public int subtraction(int a, int b){
     return a-b;
