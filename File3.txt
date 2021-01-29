@@ -11,3 +11,6 @@ public int avg(int[] array){
     }
     return sum/array.length;
 }
+
+#A00447456
+public int Math.pow(4, 3);

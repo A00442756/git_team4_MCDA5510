@@ -7,3 +7,6 @@ def division(x: int, y: int):
 public int mod(int a, int b){
     return a%b;
 }
+
+#A00447456
+public int Min-Math.max(3,5,8,10);
