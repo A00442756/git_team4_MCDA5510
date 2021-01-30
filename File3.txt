@@ -3,6 +3,7 @@ public int Math.pow(4, 3);
 
 #A00445457
 public int avg(int[] array){
+    //return the avg of a and b
     int sum = 0;
     for (int i = 0; i < array.length;i++){
         sum += array[i];
