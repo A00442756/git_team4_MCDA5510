@@ -1,2 +1,7 @@
 #A00447456
 public int Min-Math.max(3,5,8,10);
+
+#A00442756
+def division(x: int, y: int):
+    return x / y
+
