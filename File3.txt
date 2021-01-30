@@ -1,4 +1,3 @@
-
 #A00447456
 public int Math.pow(4, 3);
 
@@ -10,4 +9,8 @@ public int avg(int[] array){
     }
     return sum/array.length;
 }
+
+#A00442756
+def math_max(x: int, y: int):
+    return max(x, y)
 
