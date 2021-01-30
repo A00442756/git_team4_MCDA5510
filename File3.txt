@@ -3,7 +3,7 @@ def math_max(x: int, y: int):
     return max(x, y)
 
 
-#A0044545
+#A00445457
 public int avg(int[] array){
     int sum = 0;
     for (int i = 0; i < array.length;i++){
