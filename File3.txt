@@ -2,6 +2,8 @@
 def math_max(x: int, y: int):
     return max(x, y)
 
+#A00447456
+public int Math.pow(4, 3);
 
 #A0044545
 public int avg(int[] array){
