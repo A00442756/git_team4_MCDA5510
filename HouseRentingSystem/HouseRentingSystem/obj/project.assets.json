@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lws\\Desktop\\A00445457\\git_team4_MCDA5510\\HouseRentingSystem\\HouseRentingSystem\\HouseRentingSystem.csproj",
+      "projectUniqueName": "E:\\repo\\git_team4_MCDA5510\\HouseRentingSystem\\HouseRentingSystem\\HouseRentingSystem.csproj",
       "projectName": "HouseRentingSystem",
-      "projectPath": "C:\\Users\\lws\\Desktop\\A00445457\\git_team4_MCDA5510\\HouseRentingSystem\\HouseRentingSystem\\HouseRentingSystem.csproj",
+      "projectPath": "E:\\repo\\git_team4_MCDA5510\\HouseRentingSystem\\HouseRentingSystem\\HouseRentingSystem.csproj",
       "packagesPath": "C:\\Users\\lws\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lws\\Desktop\\A00445457\\git_team4_MCDA5510\\HouseRentingSystem\\HouseRentingSystem\\obj\\",
+      "outputPath": "E:\\repo\\git_team4_MCDA5510\\HouseRentingSystem\\HouseRentingSystem\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
