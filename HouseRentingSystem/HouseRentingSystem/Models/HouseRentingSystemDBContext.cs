@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -13,6 +14,7 @@ namespace HouseRentingSystem.Models
         public HouseRentingSystemDBContext()
         {
         }
+        public IConfiguration Configuration { get; }
 
         public HouseRentingSystemDBContext(DbContextOptions<HouseRentingSystemDBContext> options)
             : base(options)
@@ -30,8 +32,9 @@ namespace HouseRentingSystem.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=tcp:5510somto.database.windows.net,1433;Initial Catalog=HouseRentingSystemDB;Persist Security Info=False;User ID=somto;Password=Megamind2020;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                //read connectionstring from configuration, which is appsetting.json
+                var defaultcon = Configuration.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseSqlServer(defaultcon);
             }
         }
 
