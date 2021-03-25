@@ -3,6 +3,7 @@
 ################################################################################
 
 /.vs
+/HouseRentingSystem/.vs/HouseRentingSystem
 /HouseRentingSystem/HouseRentingSystem/bin/Debug/netcoreapp3.1
 /HouseRentingSystem/HouseRentingSystem/obj
-/HouseRentingSystem/.vs
+
