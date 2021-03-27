@@ -33,8 +33,8 @@ namespace HouseRentingSystem.Models
             if (!optionsBuilder.IsConfigured)
             {
                 //read connectionstring from configuration, which is appsetting.json
-                var defaultcon = Configuration.GetConnectionString("DefaultConnection");
-                optionsBuilder.UseSqlServer(defaultcon);
+                //var defaultcon = Configuration.GetConnectionString("DefaultConnection");
+                //optionsBuilder.UseSqlServer(defaultcon);
             }
         }
 

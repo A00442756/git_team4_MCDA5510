@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace HouseRentingSystem
 {
@@ -24,7 +25,10 @@ namespace HouseRentingSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<HouseRentingSystemDBContext>();
+
+            //denpendency injection connectionstring to dbcontext instead of using hardcode in
+            string connectionstring = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<HouseRentingSystemDBContext>(options=>options.UseSqlServer(connectionstring));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
