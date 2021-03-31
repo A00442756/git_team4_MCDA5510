@@ -6,5 +6,9 @@
 /HouseRentingSystem/.vs/HouseRentingSystem
 /HouseRentingSystem/HouseRentingSystem/bin/Debug/netcoreapp3.1
 /HouseRentingSystem/HouseRentingSystem/obj
+<<<<<<< HEAD
 /HouseRentingSystem/HouseRentingSystem/bin/Release/netcoreapp3.1
 
+=======
+/HouseRentingSystem/HouseRentingSystem/bin
+>>>>>>> feature/A00445457
