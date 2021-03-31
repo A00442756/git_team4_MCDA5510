@@ -25,7 +25,11 @@ namespace HouseRentingSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+#if DEBUG   
+            //only valid on development environment
+            //auto rebuild razorpages when any razor change is saved
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+#endif
             //denpendency injection connectionstring to dbcontext instead of using hardcode in
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<HouseRentingSystemDBContext>(options=>options.UseSqlServer(connectionstring));
