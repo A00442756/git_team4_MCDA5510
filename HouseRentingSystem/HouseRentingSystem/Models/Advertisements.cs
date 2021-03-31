@@ -35,5 +35,6 @@ namespace HouseRentingSystem.Models
         public bool Fridge { get; set; }
         public bool Airconditioning { get; set; }
         public bool Smokingpermit { get; set; }
+        public DateTime Postdate { get; set; }
     }
 }

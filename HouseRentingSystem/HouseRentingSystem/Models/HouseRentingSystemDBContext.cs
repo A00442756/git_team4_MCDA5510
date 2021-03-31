@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -23,6 +25,7 @@ namespace HouseRentingSystem.Models
         public virtual DbSet<Images> Images { get; set; }
         public virtual DbSet<StarLists> StarLists { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -83,6 +86,10 @@ namespace HouseRentingSystem.Models
                 entity.Property(e => e.Parkingnum).HasColumnName("parkingnum");
 
                 entity.Property(e => e.Petfriendly).HasColumnName("petfriendly");
+
+                entity.Property(e => e.Postdate)
+                    .HasColumnName("postdate")
+                    .HasColumnType("date");
 
                 entity.Property(e => e.Province)
                     .IsRequired()
