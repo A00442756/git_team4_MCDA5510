@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -14,7 +11,6 @@ namespace HouseRentingSystem.Models
         public HouseRentingSystemDBContext()
         {
         }
-        public IConfiguration Configuration { get; }
 
         public HouseRentingSystemDBContext(DbContextOptions<HouseRentingSystemDBContext> options)
             : base(options)
@@ -27,16 +23,6 @@ namespace HouseRentingSystem.Models
         public virtual DbSet<Images> Images { get; set; }
         public virtual DbSet<StarLists> StarLists { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                //read connectionstring from configuration, which is appsetting.json
-                //var defaultcon = Configuration.GetConnectionString("DefaultConnection");
-                //optionsBuilder.UseSqlServer(defaultcon);
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
