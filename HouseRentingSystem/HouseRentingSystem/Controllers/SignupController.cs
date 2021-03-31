@@ -9,11 +9,11 @@ using HouseRentingSystem.Models;
 
 namespace HouseRentingSystem.Controllers
 {
-    public class UsersController : Controller
+    public class SignupController : Controller
     {
         private readonly HouseRentingSystemDBContext _context;
 
-        public UsersController(HouseRentingSystemDBContext context)
+        public SignupController(HouseRentingSystemDBContext context)
         {
             _context = context;
         }
