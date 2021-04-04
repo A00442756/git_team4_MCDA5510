@@ -10,6 +10,7 @@ namespace HouseRentingSystem.Models
 {
     public class AdvertisementModel
     {
+        [Key]
         public int Adid { get; set; }
         public int Userid { get; set; }
         public bool Ondisplay { get; set; }
