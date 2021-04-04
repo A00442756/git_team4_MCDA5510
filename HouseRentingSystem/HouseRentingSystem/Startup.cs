@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using HouseRentingSystem.Data;
 
 namespace HouseRentingSystem
 {
@@ -31,7 +32,7 @@ namespace HouseRentingSystem
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
             //denpendency injection connectionstring to dbcontext instead of using hardcode in
-            string connectionstring = Configuration.GetConnectionString("DefaultConnection");
+            string connectionstring = Configuration.GetConnectionString("DevConnection");
             services.AddDbContext<HouseRentingSystemDBContext>(options=>options.UseSqlServer(connectionstring));
         }
 
