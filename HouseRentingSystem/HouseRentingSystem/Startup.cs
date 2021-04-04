@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using HouseRentingSystem.Data;
+using HouseRentingSystem.Repository;
 
 namespace HouseRentingSystem
 {
@@ -28,7 +29,8 @@ namespace HouseRentingSystem
 #endif
             //denpendency injection connectionstring to dbcontext instead of using hardcode in
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<HouseRentingSystemDBContext>(options=>options.UseSqlServer(connectionstring));
+            services.AddDbContext<HouseRentingSystemDBContext>(options => options.UseSqlServer(connectionstring));
+            services.AddScoped<AdvertisementRepository, AdvertisementRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
