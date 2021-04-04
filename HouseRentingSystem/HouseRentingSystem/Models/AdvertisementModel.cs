@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -7,11 +8,13 @@ using System.Collections.Generic;
 
 namespace HouseRentingSystem.Models
 {
-    public partial class Advertisements
+    public class AdvertisementModel
     {
         public int Adid { get; set; }
         public int Userid { get; set; }
         public bool Ondisplay { get; set; }
+        [StringLength(100, MinimumLength = 5)]
+        [Required(ErrorMessage = "Please enter the title of your book")]
         public string Title { get; set; }
         public string Country { get; set; }
         public string Province { get; set; }
