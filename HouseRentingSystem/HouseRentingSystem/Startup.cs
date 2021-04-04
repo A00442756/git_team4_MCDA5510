@@ -32,7 +32,7 @@ namespace HouseRentingSystem
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
             //denpendency injection connectionstring to dbcontext instead of using hardcode in
-            string connectionstring = Configuration.GetConnectionString("DevConnection");
+            string connectionstring = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<HouseRentingSystemDBContext>(options=>options.UseSqlServer(connectionstring));
         }
 
