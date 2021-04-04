@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HouseRentingSystem.Models;
 
 namespace HouseRentingSystem.Data
 {
@@ -19,6 +20,5 @@ namespace HouseRentingSystem.Data
         public DbSet<Images> Images { get; set; }
         public DbSet<StarLists> StarLists { get; set; }
         public DbSet<Users> Users { get; set; }
-
     }
 }
