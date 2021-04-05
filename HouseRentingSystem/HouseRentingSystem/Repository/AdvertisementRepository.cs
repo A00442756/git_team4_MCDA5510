@@ -17,7 +17,7 @@ namespace HouseRentingSystem.Repository
             _context = context;
         }
 
-        public async Task<List<AdvertisementModel>> GetAdvertisementsByUserID(int UserID)
+        public async Task<List<AdvertisementModel>> GetAdvertisementsByUserId(int UserID)
         {
             List<AdvertisementModel> adModelList = new List<AdvertisementModel>();
             var advertisements = await _context.Advertisements.Where(x => x.Userid == UserID).ToListAsync();
@@ -27,9 +27,12 @@ namespace HouseRentingSystem.Repository
                 {
                     adModelList.Add(new AdvertisementModel()
                     {
+                        Adid = advertisement.Adid,
                         Userid = advertisement.Userid,
+                        Rental = advertisement.Rental,
                         Ondisplay = advertisement.Ondisplay,
                         Title = advertisement.Title,
+                        Description = advertisement.Description,
                         Country = advertisement.Country,
                         Province = advertisement.Province,
                         City = advertisement.City,
@@ -60,6 +63,42 @@ namespace HouseRentingSystem.Repository
             return adModelList;
         }
 
+        public async Task<AdvertisementModel> GetAdvertisementByAdId(int AdId)
+        {
+            return await _context.Advertisements.Where(x => x.Adid == AdId)
+                .Select(advertisement => new AdvertisementModel()
+                {
+                    Userid = advertisement.Userid,
+                    Ondisplay = advertisement.Ondisplay,
+                    Title = advertisement.Title,
+                    Rental = advertisement.Rental,
+                    Description = advertisement.Description,
+                    Country = advertisement.Country,
+                    Province = advertisement.Province,
+                    City = advertisement.City,
+                    Streetname = advertisement.Streetname,
+                    Streetnum = advertisement.Streetnum,
+                    Bedroomsnum = advertisement.Bedroomsnum,
+                    Bathroomsnum = advertisement.Bathroomsnum,
+                    Hydro = advertisement.Hydro,
+                    Heat = advertisement.Heat,
+                    Water = advertisement.Water,
+                    Internet = advertisement.Internet,
+                    Parkingnum = advertisement.Parkingnum,
+                    Agreementtype = advertisement.Agreementtype,
+                    Moveindate = advertisement.Moveindate,
+                    Petfriendly = advertisement.Petfriendly,
+                    Size = advertisement.Size,
+                    Furnished = advertisement.Furnished,
+                    Laundry = advertisement.Laundry,
+                    Dishwasher = advertisement.Dishwasher,
+                    Fridge = advertisement.Fridge,
+                    Airconditioning = advertisement.Airconditioning,
+                    Smokingpermit = advertisement.Smokingpermit,
+                    Postdate = advertisement.Postdate
+                }).FirstOrDefaultAsync();
+        }
+
         public async Task<List<AdvertisementModel>> GetAllAdvertisement()
         {
             var advertisements = new List<AdvertisementModel>();
@@ -73,6 +112,8 @@ namespace HouseRentingSystem.Repository
                         Userid = advertisement.Userid,
                         Ondisplay = advertisement.Ondisplay,
                         Title = advertisement.Title,
+                        Rental = advertisement.Rental,
+                        Description = advertisement.Description,
                         Country = advertisement.Country,
                         Province = advertisement.Province,
                         City = advertisement.City,
@@ -109,7 +150,9 @@ namespace HouseRentingSystem.Repository
             {
                 Userid = model.Userid,
                 Ondisplay = true,
+                Rental = model.Rental,
                 Title = model.Title,
+                Description = model.Description,
                 Country = model.Country,
                 Province = model.Province,
                 City = model.City,

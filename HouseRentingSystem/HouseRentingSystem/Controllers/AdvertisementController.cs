@@ -26,9 +26,15 @@ namespace HouseRentingSystem.Controllers
             return View(data);
         }
 
+        public async Task<ViewResult> GetAdvertisement(int AdId)
+        {
+            var data = await _advertisementRepository.GetAdvertisementByAdId(AdId);
+            return View(data);
+        }
+
         public async Task<ViewResult> managead(int UserId)
         {
-            List<AdvertisementModel> modellist = await  _advertisementRepository.GetAdvertisementsByUserID(UserId);
+            List<AdvertisementModel> modellist = await  _advertisementRepository.GetAdvertisementsByUserId(UserId);
             return View(modellist);
         }
 

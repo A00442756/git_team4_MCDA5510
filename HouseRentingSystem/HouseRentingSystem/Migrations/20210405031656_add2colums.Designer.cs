@@ -4,14 +4,16 @@ using HouseRentingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HouseRentingSystem.Migrations
 {
     [DbContext(typeof(HouseRentingSystemDBContext))]
-    partial class HouseRentingSystemDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210405031656_add2colums")]
+    partial class add2colums
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,9 +87,6 @@ namespace HouseRentingSystem.Migrations
 
                     b.Property<string>("Province")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Rental")
-                        .HasColumnType("int");
 
                     b.Property<int>("Size")
                         .HasColumnType("int");

@@ -15,13 +15,13 @@
                     <img src="/images/defalthouse.jpeg" class="img-thumbnail" />
                     <div class="card-body">
                         <h3 class="card-title">@(string.IsNullOrEmpty(advertisement.Title) ? "Name is not available" : advertisement.Title)</h3>
-                        <p class="card-text">@(string.IsNullOrEmpty(advertisement.Streetname) ? "Street Name is not availabe": advertisement.Streetname)</p>
+                        <p class="card-text">@(string.IsNullOrEmpty(advertisement.Description) ? "Description is not availabe": advertisement.Description)</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a asp-route="bookDetailsRoute" asp-route-id="@advertisement.Adid"
+                                <a asp-controller="Advertisement" asp-action="GetAdvertisement" asp-route-AdId="@advertisement.Adid"
                                    class="btn btn-sm btn-outline-secondary">Edit details</a>
                             </div>
-                            <small class="text-muted">@(string.IsNullOrEmpty(advertisement.Streetnum) ? "NA" : advertisement.Streetnum)</small>
+                            <small class="text-muted">@(string.IsNullOrEmpty(advertisement.Streetname) ? "NA" : advertisement.Streetname)</small>
                         </div>
                     </div>
                 </div>
