@@ -45,6 +45,7 @@
                     <span class="col-form-label">@Model.City</span>
                 </div>
             </div>
+            <br/>
             <div class="row">
                 <div class="col-md-4">
                     <a class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
@@ -53,16 +54,166 @@
                 </div>
             </div>
 
-            <hr/>
+            <hr />
             <ul class="list-group">
                 <li class="list-group-item"><span class="font-weight-bold">Street Name - </span>@Model.Streetname</li>
                 <li class="list-group-item"><span class="font-weight-bold">Street Number - </span>@Model.Streetnum</li>
             </ul>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <p class=".text-truncate">@Model.Description</p>
+    <br />
+    @if (!string.IsNullOrEmpty(@Model.Description))
+    {
+        <div class="row">
+            <h4 class="display-4">Description</h4>
+            <div class="col-md-12">
+                <p class=".text-truncate">@Model.Description</p>
+
+            </div>
+        </div>
+        <br />
+    }
+    <div class="card-deck">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Overview</h5>
+
+                @*<img src="~/images/Advertisement/UtilitiesIncluded.png" class="card-img" alt="~/images/Advertisement/bed.png">*@
+                <p class="card-text">Utilities Included</p>
+                <p class="card-text">Hydro: 
+                    @if (@Model.Hydro == true)
+                        {<span>yes</span>}
+                    else
+                        {<span class="text-muted">no</span>}</p>
+                <p class="card-text">Heat: 
+                    @if (@Model.Heat == true)
+                    {<span>yes</span>}
+                    else
+                    {<span class="text-muted">no</span>}</p>
+                <p class="card-text">Water: 
+                    @if (@Model.Water == true)
+                    {<span>yes</span>}
+                    else
+                    {<span class="text-muted">no</span>}</p>
+                <p class="card-text">
+                    Wi-Fi and More: 
+                    @if (@Model.Internet == true)
+                    {<span>yes</span>}
+                    else
+                    {<span class="text-muted">no</span>}
+                </p>
+                <p class="card-text">
+                    Move-in-date:
+                    @Model.Moveindate.Year
+                    @switch (@Model.Moveindate.Month)
+                    {
+                        case  1:
+                            <span>Jan</span>;
+                            break;
+                        case  2:
+                            <span>Feb</span>;
+                            break;
+                        case  3:
+                            <span>Mar</span>;
+                            break;
+                        case  4:
+                            <span>Apr</span>;
+                            break;
+                        case  5:
+                            <span>May</span>;
+                            break;
+                        case  6:
+                            <span>Jun</span>;
+                            break;
+                        case  7:
+                            <span>Jul</span>;
+                            break;
+                        case  8:
+                            <span>Aug</span>;
+                            break;
+                        case  9:
+                            <span>Sep</span>;
+                            break;
+                        case  10:
+                            <span>Oct</span>;
+                            break;
+                        case  11:
+                            <span>Nov</span>;
+                            break;
+                        case  12:
+                            <span>Dec</span>;
+                            break;
+                    }
+                    
+                    @Model.Moveindate.Day
+                </p>
+                <p class="card-text">
+                    Agreement Type: <span>@Model.Agreementtype</span>
+                </p>
+                <p class="card-text">
+                    Pet friendly: 
+                    @if (@Model.Internet == true)
+                    {<span>yes</span>}
+                    else
+                    {<span class="text-muted">no</span>}
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">The Unit</h5>
+                <p class="card-text">
+                    Size (sqft): <span>@Model.Size</span>
+                </p>
+                <p class="card-text">
+                    Furnished: 
+                    @if (@Model.Furnished == true)
+                    {<span>yes</span>}
+                    else
+                    {<span class="text-muted">no</span>}
+                </p>                
+                <p class="card-text">
+                    Laundry: 
+                    @if (@Model.Laundry == true)
+                    {<span>yes</span>}
+                    else
+                    {<span class="text-muted">no</span>}
+                </p>                
+                <p class="card-text">
+                    Fridge: 
+                    @if (@Model.Fridge == true)
+                    {<span>yes</span>}
+                    else
+                    {<span class="text-muted">no</span>}
+                </p>                
+                <p class="card-text">
+                    Air-conditioning: 
+                    @if (@Model.Airconditioning == true)
+                    {<span>yes</span>}
+                    else
+                    {<span class="text-muted">no</span>}
+                </p>                
+                <p class="card-text">
+                    Smoke-permited: 
+                    @if (@Model.Smokingpermit == true)
+                    {<span>yes</span>}
+                    else
+                    {<span class="text-muted">no</span>}
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">The Building</h5>
+                <p class="card-text">
+                    Bedroom number: <span>@Model.Bedroomsnum</span>
+                </p>
+                <p class="card-text">
+                    Bathroom number: <span>@Model.Bathroomsnum</span>
+                </p>
+            </div>
         </div>
     </div>
 </div>
