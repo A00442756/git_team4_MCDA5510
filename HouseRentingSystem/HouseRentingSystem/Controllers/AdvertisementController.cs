@@ -19,23 +19,32 @@ namespace HouseRentingSystem.Controllers
         {
             return View();
         }
-        public async Task<ViewResult> managead()
+
+        public async Task<ViewResult> GetAllAdvertisements()
         {
-            return View();
+            var data = await _advertisementRepository.GetAllAdvertisement();
+            return View(data);
+        }
+
+        public async Task<ViewResult> managead(int UserId)
+        {
+            List<AdvertisementModel> modellist = await  _advertisementRepository.GetAdvertisementsByUserID(UserId);
+            return View(modellist);
         }
 
         public async Task<ViewResult> postad()
         {
-            return View();
+            var model = new AdvertisementModel();
+            return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> postad(AdvertisementModel model)
         {
-            int id = await _advertisementRepository.AddNewAdvertisement(model);
+            var id = await _advertisementRepository.AddNewAdvertisement(model);
             if (id > 0)
             {
-                return Redirect(nameof(managead));
+                return RedirectToAction(nameof(managead), new {UserId=0});
             }
 
             return View();

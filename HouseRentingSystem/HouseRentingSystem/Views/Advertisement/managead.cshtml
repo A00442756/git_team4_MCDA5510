@@ -1,0 +1,33 @@
+﻿@model IEnumerable<HouseRentingSystem.Models.AdvertisementModel>
+
+@{
+    ViewData["Title"] = "All Advertisements";
+}
+
+<div class="container">
+    <h3 class="display-4">All your advertisements</h3>
+    <div class="row">
+
+        @foreach (var advertisement in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/images/defalthouse.jpeg" class="img-thumbnail" />
+                    <div class="card-body">
+                        <h3 class="card-title">@(string.IsNullOrEmpty(advertisement.Title) ? "Name is not available" : advertisement.Title)</h3>
+                        <p class="card-text">@(string.IsNullOrEmpty(advertisement.Streetname) ? "Street Name is not availabe": advertisement.Streetname)</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a asp-route="bookDetailsRoute" asp-route-id="@advertisement.Adid"
+                                   class="btn btn-sm btn-outline-secondary">Edit details</a>
+                            </div>
+                            <small class="text-muted">@(string.IsNullOrEmpty(advertisement.Streetnum) ? "NA" : advertisement.Streetnum)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+</div>
