@@ -1,0 +1,185 @@
+﻿@model IEnumerable<HouseRentingSystem.Models.AdvertisementModel>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Userid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ondisplay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Province)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Streetname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Streetnum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bedroomsnum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bathroomsnum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hydro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Heat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Water)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Internet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parkingnum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agreementtype)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Moveindate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Petfriendly)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Furnished)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Laundry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dishwasher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fridge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Airconditioning)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Smokingpermit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Postdate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Userid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ondisplay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Province)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Streetname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Streetnum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bedroomsnum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bathroomsnum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hydro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Heat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Water)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Internet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parkingnum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agreementtype)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Moveindate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Petfriendly)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Furnished)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Laundry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dishwasher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fridge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Airconditioning)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Smokingpermit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postdate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Adid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Adid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Adid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
