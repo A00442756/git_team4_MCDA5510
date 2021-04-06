@@ -1,0 +1,234 @@
+﻿@using HouseRentingSystem.Models;
+@model AdvertisementModel
+
+<div class="container">
+    <h3 class="display-4">Advertisement details</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+
+                    @for (int i = 0; i < Model.Gallery.Count(); i++)
+                    {
+                        <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="@(i==0 ? "active" : "") "></li>
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.Gallery.Count(); i++)
+                    {
+                        <div class="@(i==0 ? "carousel-item active" : "carousel-item") ">
+                            <img class="d-block w-100" width="540px" height="274px" src="@Model.Gallery[i].URL?auto=yes&bg=777&fg=555" alt="@Model.Gallery[i].Name">
+                        </div>
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.Title</h1><h2>$@Model.Rental</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="col-form-label">@Model.Country</span>
+                    <span class="col-form-label">@Model.Province</span>
+                    <span class="col-form-label">@Model.City</span>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-4">
+                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
+                        Rent now
+                    </a>
+                </div>
+            </div>
+
+            <hr />
+            <ul class="list-group">
+                <li class="list-group-item"><span class="font-weight-bold">Street Name - </span>@Model.Streetname</li>
+                <li class="list-group-item"><span class="font-weight-bold">Street Number - </span>@Model.Streetnum</li>
+            </ul>
+        </div>
+    </div>
+    <br />
+    @if (!string.IsNullOrEmpty(@Model.Description))
+    {
+        <div class="row">
+            <h4 class="display-4">Description</h4>
+            <div class="col-md-12">
+                <p class=".text-truncate">@Model.Description</p>
+
+            </div>
+        </div>
+        <br />
+    }
+    <div class="card-deck">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Overview</h5>
+
+                
+                <p class="card-text"><img src="~/images/Advertisement/UtilitiesIncluded.png" width="20px" height="20px" alt="~/images/Advertisement/bed.png">Utilities Included</p>
+                <p class="card-text">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hydro:
+                    @if (@Model.Hydro == true)
+                    {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
+                    else
+                    {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
+                </p>
+                <p class="card-text">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heat:
+                    @if (@Model.Heat == true)
+                    {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
+                    else
+                    {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
+                </p>
+                <p class="card-text">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Water:
+                    @if (@Model.Water == true)
+                    {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
+                    else
+                    {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
+                </p>
+                <p class="card-text">
+
+                    <img width="20px" height="20px" src="~/images/Advertisement/wifi.png" />&nbsp; Wi-Fi and More:
+                    @if (@Model.Internet == true)
+                    {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
+                    else
+                    {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
+                </p>
+                <p class="card-text">
+
+                    <img width="20px" height="20px" src="~/images/Advertisement/calender.png" />&nbsp;Move-in-date:
+                    @Model.Moveindate.Year
+                    @switch (@Model.Moveindate.Month)
+                    {
+                        case 1:
+                            <span>Jan</span>;
+                            break;
+                        case 2:
+                            <span>Feb</span>;
+                            break;
+                        case 3:
+                            <span>Mar</span>;
+                            break;
+                        case 4:
+                            <span>Apr</span>;
+                            break;
+                        case 5:
+                            <span>May</span>;
+                            break;
+                        case 6:
+                            <span>Jun</span>;
+                            break;
+                        case 7:
+                            <span>Jul</span>;
+                            break;
+                        case 8:
+                            <span>Aug</span>;
+                            break;
+                        case 9:
+                            <span>Sep</span>;
+                            break;
+                        case 10:
+                            <span>Oct</span>;
+                            break;
+                        case 11:
+                            <span>Nov</span>;
+                            break;
+                        case 12:
+                            <span>Dec</span>;
+                            break;
+                    }
+
+                    @Model.Moveindate.Day
+                </p>
+                <p class="card-text">
+
+                    <img width="20px" height="20px" src="~/images/Advertisement/clock.png" />&nbsp;Agreement Type: <span>@Model.Agreementtype</span>
+                </p>
+                <p class="card-text">
+
+                    <img width="20px" height="20px" src="~/images/Advertisement/pet.png" />&nbsp;Pet friendly:
+                    @if (@Model.Internet == true)
+                    {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
+                    else
+                    {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">The Unit</h5>
+                <p class="card-text">
+
+                    <img width="20px" height="20px" src="~/images/Advertisement/Rulers.png" />&nbsp;Size (sqft): <span>@Model.Size</span>
+                </p>
+                <p class="card-text">
+
+                    <img width="20px" height="20px" src="~/images/Advertisement/sofa.png" />&nbsp; Furnished:
+                    @if (@Model.Furnished == true)
+                    {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
+                    else
+                    {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
+                </p>                
+                <p class="card-text">
+
+                    <img width="20px" height="20px" src="~/images/Advertisement/laundry.png" />&nbsp;Laundry:
+                    @if (@Model.Laundry == true)
+                    {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
+                    else
+                    {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
+                </p>                
+                <p class="card-text">
+
+                    <img width="20px" height="20px" src="~/images/Advertisement/Fridge.png" />&nbsp;Fridge:
+                    @if (@Model.Fridge == true)
+                    {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
+                    else
+                    {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
+                </p>                
+                <p class="card-text">
+
+                    <img width="20px" height="20px" src="~/images/Advertisement/airconditioning.png" />&nbsp;Air-conditioning:
+                    @if (@Model.Airconditioning == true)
+                    {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
+                    else
+                    {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
+                </p>                
+                <p class="card-text">
+
+                    <img width="20px" height="20px" class="imgicon" src="~/images/Advertisement/smoke.png" />&nbsp;Smoke-permited:
+                    @if (@Model.Smokingpermit == true)
+                    {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
+                    else
+                    {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
+                </p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">The Building</h5>
+                <p class="card-text">
+
+                    <img width="20px" height="20px" src="~/images/Advertisement/bed.png" />&nbsp;Bedroom number: <span>@Model.Bedroomsnum</span>
+                </p>
+                <p class="card-text">
+
+                    <img width="20px" height="20px" class="imgicon" src="~/images/Advertisement/toilet.png" />&nbsp;Bathroom number: <span>@Model.Bathroomsnum</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,14 @@
     {
       "library": "react@16.8.6",
       "destination": "wwwroot/lib/react/"
+    },
+    {
+      "library": "react-dom@16.8.6",
+      "destination": "wwwroot/lib/react-dom/"
+    },
+    {
+      "library": "@babel/standalone@7.13.14",
+      "destination": "wwwroot/babel/standalone/"
     }
   ]
 }

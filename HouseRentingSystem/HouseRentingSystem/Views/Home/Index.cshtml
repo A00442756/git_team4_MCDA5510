@@ -2,7 +2,63 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome </h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1>Welcome to House Renting System</h1>
+        <p class="lead text-muted">
+            A system focusing on helping people exchange the house renting information in a more efficient way.
+        </p>
+        <p class="lead text-muted">
+            A platform that not only for displaying beautiful house and apartment but also show a different way of life.
+        </p>
+        <p class="lead text-muted">
+            A helpful tool which could solve most of your renting problems.
+        </p>
+        @*        <p>
+                <a href="#" class="btn btn-primary my-2">Search renting house</a>
+            </p>*@
+    </div>
+</section>
+@*<div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <img src="/images/defalthouse.jpeg" class="img-thumbnail" />
+            <div class="card-body">
+                <h3 class="card-title">@(string.IsNullOrEmpty(advertisement.Title) ? "Name is not available" : advertisement.Title)</h3>
+                <p class="card-text">@(string.IsNullOrEmpty(advertisement.Description) ? "Description is not availabe": advertisement.Description)</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a asp-controller="Advertisement" asp-action="GetAdvertisement" asp-route-AdId="@advertisement.Adid"
+                           class="btn btn-sm btn-outline-secondary">Edit details</a>
+                    </div>
+                    <small class="text-muted">@(string.IsNullOrEmpty(advertisement.Streetname) ? "NA" : advertisement.Streetname)</small>
+                </div>
+            </div>
+        </div>
+    </div>*@
+<div class="container">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
+<div id="adlist"></div>
+
+@section Scripts
+{
+    <script src="~/js/advertisementlist.js" type="text/babel"></script>
+
+    @*    <script type="text/babel">
+            let mydom = <div>hello</div>
+            ReactDOM.render(mydom,document.getElementById("adlist"))
+        </script>*@
+}
+

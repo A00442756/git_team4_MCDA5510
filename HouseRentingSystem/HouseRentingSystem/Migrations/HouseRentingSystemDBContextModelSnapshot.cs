@@ -19,6 +19,29 @@ namespace HouseRentingSystem.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("HouseRentingSystem.Data.AdvertisementGallery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AdvertisementAdid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("URL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertisementAdid");
+
+                    b.ToTable("AdvertisementGallery");
+                });
+
             modelBuilder.Entity("HouseRentingSystem.Data.Advertisements", b =>
                 {
                     b.Property<int>("Adid")
@@ -42,6 +65,9 @@ namespace HouseRentingSystem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Dishwasher")
@@ -82,6 +108,9 @@ namespace HouseRentingSystem.Migrations
 
                     b.Property<string>("Province")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rental")
+                        .HasColumnType("int");
 
                     b.Property<int>("Size")
                         .HasColumnType("int");
@@ -233,6 +262,15 @@ namespace HouseRentingSystem.Migrations
                     b.HasKey("Userid");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("HouseRentingSystem.Data.AdvertisementGallery", b =>
+                {
+                    b.HasOne("HouseRentingSystem.Data.Advertisements", "Advertisement")
+                        .WithMany("AdvertisementGallery")
+                        .HasForeignKey("AdvertisementAdid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
