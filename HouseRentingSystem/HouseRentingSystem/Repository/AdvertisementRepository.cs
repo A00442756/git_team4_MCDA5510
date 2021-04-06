@@ -76,6 +76,7 @@ namespace HouseRentingSystem.Repository
             return await _context.Advertisements.Where(x => x.Adid == AdId)
                 .Select(advertisement => new AdvertisementModel()
                 {
+                    Adid = advertisement.Adid,
                     Userid = advertisement.Userid,
                     Ondisplay = advertisement.Ondisplay,
                     Title = advertisement.Title,
@@ -125,6 +126,7 @@ namespace HouseRentingSystem.Repository
                         .ToList();
                     advertisements.Add(new AdvertisementModel()
                     {
+                        Adid = advertisement.Adid,
                         Userid = advertisement.Userid,
                         Ondisplay = advertisement.Ondisplay,
                         Title = advertisement.Title,
