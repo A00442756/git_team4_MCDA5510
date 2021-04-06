@@ -68,6 +68,7 @@ namespace HouseRentingSystem.Models
         public DateTime Postdate { get; set; }
 
         [Display(Name = "Choose the gallery images of your house/apartment")]
+        //[Required]
         public IFormFileCollection GalleryFiles { get; set; }
         public List<GalleryModel> Gallery { get; set; }
     }
