@@ -200,14 +200,18 @@ namespace HouseRentingSystem.Repository
                 Postdate = DateTime.UtcNow
             };
             newAdvertisement.AdvertisementGallery=new List<AdvertisementGallery>();
-            foreach (var file in model.Gallery)
+            if (model.Gallery != null)
             {
-                newAdvertisement.AdvertisementGallery.Add(new AdvertisementGallery()
+                foreach (var file in model.Gallery)
                 {
-                    URL = file.URL,
-                    Name = file.Name
-                });
+                    newAdvertisement.AdvertisementGallery.Add(new AdvertisementGallery()
+                    {
+                        URL = file.URL,
+                        Name = file.Name
+                    });
+                }
             }
+
 
             await _context.Advertisements.AddAsync(newAdvertisement);
             await _context.SaveChangesAsync();

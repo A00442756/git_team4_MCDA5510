@@ -12,11 +12,18 @@
                     {
                         <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="@(i==0 ? "active" : "") "></li>
                     }
+ 
                 </ol>
                 <div class="carousel-inner">
+                    @if (Model.Gallery.Count<1)
+                    {
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" width="540px" height="274px" src="~/images/defalthouse.jpeg?auto=yes&bg=777&fg=555" alt="defalt img">
+                        </div>
+                    }
                     @for (int i = 0; i < Model.Gallery.Count(); i++)
                     {
-                        <div class="@(i==0 ? "carousel-item active" : "carousel-item") ">
+                        <div class="@(i == 0 ? "carousel-item active" : "carousel-item") ">
                             <img class="d-block w-100" width="540px" height="274px" src="@Model.Gallery[i].URL?auto=yes&bg=777&fg=555" alt="@Model.Gallery[i].Name">
                         </div>
                     }
