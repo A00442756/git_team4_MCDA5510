@@ -25,6 +25,8 @@ namespace HouseRentingSystem.Repository
             {
                 foreach (var advertisement in advertisements)
                 {
+                    var adg = _context.AdvertisementGallery.Where(x => x.AdvertisementAdid == advertisement.Adid)
+                        .ToList();
                     adModelList.Add(new AdvertisementModel()
                     {
                         Adid = advertisement.Adid,
@@ -55,7 +57,13 @@ namespace HouseRentingSystem.Repository
                         Fridge = advertisement.Fridge,
                         Airconditioning = advertisement.Airconditioning,
                         Smokingpermit = advertisement.Smokingpermit,
-                        Postdate = advertisement.Postdate
+                        Postdate = advertisement.Postdate,
+                        Gallery = adg != null ? adg.Select(g => new GalleryModel()
+                        {
+                            Id = g.Id,
+                            URL = g.URL,
+                            Name = g.Name
+                        }).ToList() : null
                     });
                 }
             }
@@ -95,7 +103,13 @@ namespace HouseRentingSystem.Repository
                     Fridge = advertisement.Fridge,
                     Airconditioning = advertisement.Airconditioning,
                     Smokingpermit = advertisement.Smokingpermit,
-                    Postdate = advertisement.Postdate
+                    Postdate = advertisement.Postdate,
+                    Gallery = advertisement.AdvertisementGallery != null ? advertisement.AdvertisementGallery.Select(g => new GalleryModel()
+                    {
+                        Id = g.Id,
+                        URL = g.URL,
+                        Name = g.Name
+                    }).ToList() : null
                 }).FirstOrDefaultAsync();
         }
 
@@ -107,6 +121,8 @@ namespace HouseRentingSystem.Repository
             {
                 foreach (var advertisement in allAdvertisements)
                 {
+                    var adg = _context.AdvertisementGallery.Where(x => x.AdvertisementAdid == advertisement.Adid)
+                        .ToList();
                     advertisements.Add(new AdvertisementModel()
                     {
                         Userid = advertisement.Userid,
@@ -136,7 +152,13 @@ namespace HouseRentingSystem.Repository
                         Fridge = advertisement.Fridge,
                         Airconditioning = advertisement.Airconditioning,
                         Smokingpermit = advertisement.Smokingpermit,
-                        Postdate = advertisement.Postdate
+                        Postdate = advertisement.Postdate,
+                        Gallery = adg != null ? adg.Select(g => new GalleryModel()
+                        {
+                            Id = g.Id,
+                            URL = g.URL,
+                            Name = g.Name
+                        }).ToList() : null
                     });
                 }
             }
@@ -177,6 +199,15 @@ namespace HouseRentingSystem.Repository
                 Smokingpermit = model.Smokingpermit,
                 Postdate = DateTime.UtcNow
             };
+            newAdvertisement.AdvertisementGallery=new List<AdvertisementGallery>();
+            foreach (var file in model.Gallery)
+            {
+                newAdvertisement.AdvertisementGallery.Add(new AdvertisementGallery()
+                {
+                    URL = file.URL,
+                    Name = file.Name
+                });
+            }
 
             await _context.Advertisements.AddAsync(newAdvertisement);
             await _context.SaveChangesAsync();

@@ -40,5 +40,6 @@ namespace HouseRentingSystem.Data
         public bool Airconditioning { get; set; }
         public bool Smokingpermit { get; set; }
         public DateTime Postdate { get; set; }
+        public ICollection<AdvertisementGallery> AdvertisementGallery { get; set; }
     }
 }

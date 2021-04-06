@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.AccessControl;
+using Microsoft.AspNetCore.Http;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -43,5 +44,10 @@ namespace HouseRentingSystem.Models
         public bool Airconditioning { get; set; }
         public bool Smokingpermit { get; set; }
         public DateTime Postdate { get; set; }
+
+        [Display(Name = "Choose the gallery images of your house/apartment")]
+        [Required]
+        public IFormFileCollection GalleryFiles { get; set; }
+        public List<GalleryModel> Gallery { get; set; }
     }
 }
