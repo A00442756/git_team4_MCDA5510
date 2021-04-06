@@ -7,10 +7,13 @@ using System.Collections.Generic;
 
 namespace HouseRentingSystem.Models
 {
-    public partial class StarLists
+    public partial class UserModel
     {
         public int Userid { get; set; }
-        public int Adid { get; set; }
-        public DateTime Stardate { get; set; }
+        public string Fname { get; set; }
+        public string Lname { get; set; }
+        public string Phonenumber { get; set; }
+        public string Emailaddress { get; set; }
+        public string Password { get; set; }
     }
 }
