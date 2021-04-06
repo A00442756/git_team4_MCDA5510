@@ -26,14 +26,10 @@ namespace HouseRentingSystem.Controllers
             return View();
         }
 
-        public async Task<IActionResult> editad(int Adid)
+        public async Task<IActionResult> editad(int adid)
         {
-            if (Adid == null)
-            {
-                return NotFound();
-            }
 
-            var advertisement = await _advertisementRepository.GetAdvertisementByAdId(Adid);
+            var advertisement = await _advertisementRepository.GetAdvertisementByAdId(adid);
             if (advertisement == null)
             {
                 return NotFound();
