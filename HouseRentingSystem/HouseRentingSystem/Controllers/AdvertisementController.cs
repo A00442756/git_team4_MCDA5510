@@ -26,6 +26,39 @@ namespace HouseRentingSystem.Controllers
             return View();
         }
 
+        public async Task<IActionResult> editad(int Adid)
+        {
+            if (Adid == null)
+            {
+                return NotFound();
+            }
+
+            var advertisement = await _advertisementRepository.GetAdvertisementByAdId(Adid);
+            if (advertisement == null)
+            {
+                return NotFound();
+            }
+            return View(advertisement);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Editad(int Adid, [Bind("Adid,Userid,Ondisplay,Title,Rental,Description,Country,Province,City,Streetname,Streetnum,Bedroomsnum,Bathroomsnum,Hydro,Heat,Water,Internet,Parkingnum,Agreementtype,Moveindate,Petfriendly,Size,Furnished,Laundry,Dishwasher,Fridge,Airconditioning,Smokingpermit")] AdvertisementModel advertisement)
+        {
+            if (Adid != advertisement.Adid)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                int returnAdid = await _advertisementRepository.EditAdvertisement(advertisement);
+
+                return RedirectToAction(nameof(GetAdvertisement), new{Adid= returnAdid });
+            }
+            return View(advertisement);
+        }
+
         public async Task<ViewResult> GetAllAdvertisements()
         {
             var data = await _advertisementRepository.GetAllAdvertisement();

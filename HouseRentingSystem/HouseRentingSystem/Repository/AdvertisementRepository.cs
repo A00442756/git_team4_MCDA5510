@@ -214,5 +214,44 @@ namespace HouseRentingSystem.Repository
 
             return newAdvertisement.Adid;
         }
+
+        public async Task<int> EditAdvertisement(AdvertisementModel model)
+        {
+            var newAdvertisement = new Advertisements()
+            {
+                Adid = model.Adid,
+                Userid = model.Userid,
+                Ondisplay = true,
+                Rental = model.Rental,
+                Title = model.Title,
+                Description = model.Description,
+                Country = model.Country,
+                Province = model.Province,
+                City = model.City,
+                Streetname = model.Streetname,
+                Streetnum = model.Streetnum,
+                Bedroomsnum = model.Bedroomsnum,
+                Bathroomsnum = model.Bathroomsnum,
+                Hydro = model.Hydro,
+                Heat = model.Heat,
+                Water = model.Water,
+                Internet = model.Internet,
+                Parkingnum = model.Parkingnum,
+                Agreementtype = model.Agreementtype,
+                Moveindate = model.Moveindate,
+                Petfriendly = model.Petfriendly,
+                Size = model.Size,
+                Furnished = model.Furnished,
+                Laundry = model.Laundry,
+                Dishwasher = model.Dishwasher,
+                Fridge = model.Fridge,
+                Airconditioning = model.Airconditioning,
+                Smokingpermit = model.Smokingpermit,
+                Postdate = DateTime.UtcNow
+            };
+            _context.Update(newAdvertisement);
+            await _context.SaveChangesAsync();
+            return newAdvertisement.Adid;
+        }
     }
 }
