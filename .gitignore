@@ -8,6 +8,7 @@
 /HouseRentingSystem/HouseRentingSystem/obj
 /HouseRentingSystem/HouseRentingSystem/bin/Release/netcoreapp3.1
 /HouseRentingSystem/HouseRentingSystem/bin
-
+!/HouseRentingSystem/HouseRentingSystem/wwwroot/advertisement/gallery/
+/HouseRentingSystem/HouseRentingSystem/wwwroot/advertisement/gallery
 
 
