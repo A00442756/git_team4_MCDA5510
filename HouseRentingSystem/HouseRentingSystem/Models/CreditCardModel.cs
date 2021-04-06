@@ -7,13 +7,13 @@ using System.Collections.Generic;
 
 namespace HouseRentingSystem.Models
 {
-    public partial class Users
+    public partial class CreditCardModel
     {
+        public int Cid { get; set; }
         public int Userid { get; set; }
-        public string Fname { get; set; }
-        public string Lname { get; set; }
-        public string Phonenumber { get; set; }
-        public string Emailaddress { get; set; }
-        public string Password { get; set; }
+        public string Cardnumber { get; set; }
+        public string Cardtype { get; set; }
+        public string Expireyear { get; set; }
+        public string Expiremonth { get; set; }
     }
 }

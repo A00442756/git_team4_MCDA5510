@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HouseRentingSystem.Models
 {
-    public partial class Contracts
+    public partial class ContractsModel
     {
         [Key]
         public int Contractid { get; set; }
