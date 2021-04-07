@@ -17,5 +17,6 @@ namespace HouseRentingSystem.Data
         public string Cardtype { get; set; }
         public string Expireyear { get; set; }
         public string Expiremonth { get; set; }
+        public string CardHolderName { get; set; }
     }
 }

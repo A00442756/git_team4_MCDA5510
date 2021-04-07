@@ -7,22 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HouseRentingSystem.Data;
 using HouseRentingSystem.Models;
+using HouseRentingSystem.Repository;
 
 namespace HouseRentingSystem.Controllers
 {
     public class CreditCardController : Controller
     {
         private readonly HouseRentingSystemDBContext _context;
+        private readonly CreditCardRepository _creditCardRepository = null;
 
-        public CreditCardController(HouseRentingSystemDBContext context)
+        public CreditCardController(HouseRentingSystemDBContext context, CreditCardRepository creditCardRepository)
         {
             _context = context;
+            _creditCardRepository = creditCardRepository;
         }
 
         // GET: CreditCard
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int userid)
         {
-            return View(await _context.CreditCardModel.ToListAsync());
+            return View(await _creditCardRepository.GetCreditCardByUserid(userid));
         }
 
         // GET: CreditCard/Details/5
@@ -33,14 +36,13 @@ namespace HouseRentingSystem.Controllers
                 return NotFound();
             }
 
-            var creditCardModel = await _context.CreditCardModel
-                .FirstOrDefaultAsync(m => m.Cid == id);
+            var creditCardModel = _creditCardRepository.GetCreditCardByCid(id.Value);
             if (creditCardModel == null)
             {
                 return NotFound();
             }
 
-            return View(creditCardModel);
+            return View(creditCardModel.Result);
         }
 
         // GET: CreditCard/Create
@@ -54,17 +56,16 @@ namespace HouseRentingSystem.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Cid,Userid,CardNumber,CardType,ExpireYear,ExpireMonth")] CreditCardModel creditCardModel)
+        public async Task<IActionResult> Create([Bind("Cid,Userid,Cardnumber,Cardtype,Expireyear,Expiremonth,CardHolderName")] CreditCardModel creditCardModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(creditCardModel);
-                await _context.SaveChangesAsync();
+                await _creditCardRepository.AddNewCreditCard(creditCardModel);
                 return RedirectToAction(nameof(Index));
             }
             return View(creditCardModel);
         }
-
+/*
         // GET: CreditCard/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -79,14 +80,14 @@ namespace HouseRentingSystem.Controllers
                 return NotFound();
             }
             return View(creditCardModel);
-        }
+        }*/
 
-        // POST: CreditCard/Edit/5
+/*        // POST: CreditCard/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Cid,Userid,CardNumber,CardType,ExpireYear,ExpireMonth")] CreditCardModel creditCardModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Cid,Userid,Cardnumber,Cardtype,Expireyear,Expiremonth")] CreditCardModel creditCardModel)
         {
             if (id != creditCardModel.Cid)
             {
@@ -115,7 +116,7 @@ namespace HouseRentingSystem.Controllers
             }
             return View(creditCardModel);
         }
-
+*/
         // GET: CreditCard/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -124,14 +125,15 @@ namespace HouseRentingSystem.Controllers
                 return NotFound();
             }
 
-            var creditCardModel = await _context.CreditCardModel
-                .FirstOrDefaultAsync(m => m.Cid == id);
+            var creditCardModel = _creditCardRepository.GetCreditCardByCid(id.Value);
+
+
             if (creditCardModel == null)
             {
                 return NotFound();
             }
 
-            return View(creditCardModel);
+            return View(creditCardModel.Result);
         }
 
         // POST: CreditCard/Delete/5
@@ -139,15 +141,13 @@ namespace HouseRentingSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var creditCardModel = await _context.CreditCardModel.FindAsync(id);
-            _context.CreditCardModel.Remove(creditCardModel);
-            await _context.SaveChangesAsync();
+            await _creditCardRepository.DeleteCreditCard(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CreditCardModelExists(int id)
+/*        private bool CreditCardModelExists(int id)
         {
             return _context.CreditCardModel.Any(e => e.Cid == id);
-        }
+        }*/
     }
 }

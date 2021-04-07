@@ -13,9 +13,10 @@ namespace HouseRentingSystem.Models
         [Key]
         public int Cid { get; set; }
         public int Userid { get; set; }
-        public string CardNumber { get; set; }
-        public string CardType { get; set; }
-        public string ExpireYear { get; set; }
-        public string ExpireMonth { get; set; }
+        public string Cardnumber { get; set; }
+        public string Cardtype { get; set; }
+        public string Expireyear { get; set; }
+        public string Expiremonth { get; set; }
+        public string CardHolderName { get; set; }
     }
 }

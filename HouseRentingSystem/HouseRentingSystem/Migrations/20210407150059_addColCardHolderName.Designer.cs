@@ -4,14 +4,16 @@ using HouseRentingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HouseRentingSystem.Migrations
 {
     [DbContext(typeof(HouseRentingSystemDBContext))]
-    partial class HouseRentingSystemDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210407150059_addColCardHolderName")]
+    partial class addColCardHolderName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

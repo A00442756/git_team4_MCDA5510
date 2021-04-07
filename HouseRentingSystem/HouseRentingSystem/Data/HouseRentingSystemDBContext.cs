@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using HouseRentingSystem.Models;
 
 namespace HouseRentingSystem.Data
 {
@@ -16,6 +15,5 @@ namespace HouseRentingSystem.Data
         public DbSet<StarLists> StarLists { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<AdvertisementGallery> AdvertisementGallery { get; set; }
-        public DbSet<HouseRentingSystem.Models.CreditCardModel> CreditCardModel { get; set; }
     }
 }

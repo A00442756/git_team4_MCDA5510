@@ -31,6 +31,7 @@ namespace HouseRentingSystem
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<HouseRentingSystemDBContext>(options => options.UseSqlServer(connectionstring));
             services.AddScoped<AdvertisementRepository, AdvertisementRepository>();
+            services.AddScoped<CreditCardRepository, CreditCardRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

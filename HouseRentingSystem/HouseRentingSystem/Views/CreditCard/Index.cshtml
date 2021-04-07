@@ -4,56 +4,57 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container">
+    <h1>Credit Cards</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Userid)
+                @Html.DisplayNameFor(model => model.CardHolderName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CardNumber)
+                @Html.DisplayNameFor(model => model.Cardnumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CardType)
+                @Html.DisplayNameFor(model => model.Cardtype)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ExpireYear)
+                @Html.DisplayNameFor(model => model.Expireyear)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ExpireMonth)
+                @Html.DisplayNameFor(model => model.Expiremonth)
             </th>
             <th></th>
         </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Userid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CardNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CardType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpireYear)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpireMonth)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Cid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Cid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Cid">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CardHolderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cardnumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cardtype)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Expireyear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Expiremonth)
+                </td>
+                <td>
+
+                    <a asp-action="Delete" asp-route-id="@item.Cid">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

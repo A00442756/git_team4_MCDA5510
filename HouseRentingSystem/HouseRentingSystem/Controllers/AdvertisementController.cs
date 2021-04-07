@@ -26,7 +26,7 @@ namespace HouseRentingSystem.Controllers
             return View();
         }
 
-        public async Task<IActionResult> editad(int adid)
+        public async Task<IActionResult> Editad(int adid)
         {
 
             var advertisement = await _advertisementRepository.GetAdvertisementByAdId(adid);
