@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2021-04-06T10:42:45.209817Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-04-06T10:43:02.0374322Z"
+    }
+  },
+  "parameters": {
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "3ad4cb75-974f-4fe1-81f5-b8edeef6dbf0"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "MCDA_Central_Canada"
+    }
+  }
+}
