@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using HouseRentingSystem.Data;
 using HouseRentingSystem.Repository;
+using Microsoft.AspNetCore.Identity;
+using HouseRentingSystem.Models;
 
 namespace HouseRentingSystem
 {
@@ -22,6 +24,8 @@ namespace HouseRentingSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<HouseRentingSystemDBContext>();
 #if DEBUG   
             //only valid on development environment
             //auto rebuild razorpages when any razor change is saved
@@ -30,8 +34,9 @@ namespace HouseRentingSystem
             //denpendency injection connectionstring to dbcontext instead of using hardcode in
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<HouseRentingSystemDBContext>(options => options.UseSqlServer(connectionstring));
-            services.AddScoped<AdvertisementRepository, AdvertisementRepository>();
-            services.AddScoped<CreditCardRepository, CreditCardRepository>();
+            services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
+            services.AddScoped<ICreditCardRepository, CreditCardRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

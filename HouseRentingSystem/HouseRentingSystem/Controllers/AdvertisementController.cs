@@ -13,9 +13,9 @@ namespace HouseRentingSystem.Controllers
 {
     public class AdvertisementController : Controller
     {
-        private readonly AdvertisementRepository _advertisementRepository = null;
+        private readonly IAdvertisementRepository _advertisementRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment = null;
-        public AdvertisementController(AdvertisementRepository advertisementRepository,
+        public AdvertisementController(IAdvertisementRepository advertisementRepository,
             IWebHostEnvironment webHostEnvironment)
         {
             _advertisementRepository = advertisementRepository;

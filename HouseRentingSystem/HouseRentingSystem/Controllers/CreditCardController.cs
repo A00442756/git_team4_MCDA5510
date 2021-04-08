@@ -13,12 +13,10 @@ namespace HouseRentingSystem.Controllers
 {
     public class CreditCardController : Controller
     {
-        private readonly HouseRentingSystemDBContext _context;
-        private readonly CreditCardRepository _creditCardRepository = null;
+        private readonly ICreditCardRepository _creditCardRepository = null;
 
-        public CreditCardController(HouseRentingSystemDBContext context, CreditCardRepository creditCardRepository)
+        public CreditCardController(ICreditCardRepository creditCardRepository)
         {
-            _context = context;
             _creditCardRepository = creditCardRepository;
         }
 

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HouseRentingSystem.Repository
 {
-    public class AdvertisementRepository
+    public class AdvertisementRepository : IAdvertisementRepository
     {
         private readonly HouseRentingSystemDBContext _context = null;
 
@@ -21,7 +21,7 @@ namespace HouseRentingSystem.Repository
         {
             List<AdvertisementModel> adModelList = new List<AdvertisementModel>();
             var advertisements = await _context.Advertisements.Where(x => x.Userid == UserID).ToListAsync();
-            if (advertisements?.Any()==true)
+            if (advertisements?.Any() == true)
             {
                 foreach (var advertisement in advertisements)
                 {
@@ -118,7 +118,7 @@ namespace HouseRentingSystem.Repository
         {
             var advertisements = new List<AdvertisementModel>();
             var allAdvertisements = await _context.Advertisements.ToListAsync();
-            if (allAdvertisements?.Any()==true)
+            if (allAdvertisements?.Any() == true)
             {
                 foreach (var advertisement in allAdvertisements)
                 {
@@ -201,7 +201,7 @@ namespace HouseRentingSystem.Repository
                 Smokingpermit = model.Smokingpermit,
                 Postdate = DateTime.UtcNow
             };
-            newAdvertisement.AdvertisementGallery=new List<AdvertisementGallery>();
+            newAdvertisement.AdvertisementGallery = new List<AdvertisementGallery>();
             if (model.Gallery != null)
             {
                 foreach (var file in model.Gallery)

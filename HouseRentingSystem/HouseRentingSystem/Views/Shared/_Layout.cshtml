@@ -6,7 +6,25 @@
     <title>@ViewData["Title"] - HouseRentingSystem</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <environment include="Development">
+        <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/css/Site.css" rel="stylesheet" />
+        <link href="~/css/NewStyle.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        @*<link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />*@
 
+        <link rel="stylesheet"
+              href="http://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/twitter-bootstrap/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only"
+              asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute"
+              integrity=""
+              crossorigin="anonymous">
+
+        <link href="~/css/site.min.css" rel="stylesheet" />
+    </environment>
 </head>
 <body>
     <header>
@@ -22,7 +40,7 @@
                         <li class="navbar-nav">
                             <a class="nav-link text-dark" href="">Login</a>
                             <a class="nav-link text-dark">or</a>
-                            <a class="nav-link text-dark" href="/signup/create">Register</a>
+                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Signup">Register</a>
                             <a class="nav-link text-dark"> </a>
                             <a class="btn btn-outline-primary" href="/Advertisement/postad?UserId=0">Post ad</a>
 
