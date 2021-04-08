@@ -19,6 +19,8 @@ namespace HouseRentingSystem.Models
         [StringLength(100, MinimumLength = 5)]
         [Required(ErrorMessage = "Please enter the title of your advertisement")]
         public string Title { get; set; }
+        public string PostalCode { get; set; }
+        public string ContactPhoneNum { get; set; }
         public int Rental { get; set; }
         [Display(Name = "write some description about your house/apartment")]
         [Required]

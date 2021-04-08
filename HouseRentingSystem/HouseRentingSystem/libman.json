@@ -1,18 +1,46 @@
 {
   "version": "1.0",
-  "defaultProvider": "unpkg",
+  "defaultProvider": "cdnjs",
   "libraries": [
+
     {
-      "library": "react@16.8.6",
-      "destination": "wwwroot/lib/react/"
+      "library": "jquery@3.4.1",
+      "destination": "wwwroot/lib/jquery/"
     },
     {
+      "library": "twitter-bootstrap@4.4.1",
+      "destination": "wwwroot/lib/twitter-bootstrap/"
+    },
+    {
+      "library": "jquery-validate@1.19.2",
+      "destination": "wwwroot/jquery-validate/"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "jquery-ajax-unobtrusive@3.2.6",
+      "destination": "wwwroot/jquery-ajax-unobtrusive/"
+    },
+    {
+      "provider": "unpkg",
       "library": "react-dom@16.8.6",
       "destination": "wwwroot/lib/react-dom/"
     },
     {
+      "provider": "unpkg",
+      "library": "react@16.8.6",
+      "destination": "wwwroot/lib/react/"
+    },
+    {
+      "provider": "unpkg",
       "library": "@babel/standalone@7.13.14",
       "destination": "wwwroot/babel/standalone/"
+    },
+    {
+      "library": "babel-standalone@6.26.0",
+      "destination": "wwwroot/lib/babel-standalone/"
     }
   ]
 }

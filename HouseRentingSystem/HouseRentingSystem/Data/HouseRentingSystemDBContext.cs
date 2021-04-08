@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using HouseRentingSystem.Models;
 
 namespace HouseRentingSystem.Data
 {
-    public class HouseRentingSystemDBContext : DbContext
+    public class HouseRentingSystemDBContext : IdentityDbContext<ApplicationUser>
     {
         public HouseRentingSystemDBContext(DbContextOptions<HouseRentingSystemDBContext> options)
             : base(options)
@@ -15,5 +17,7 @@ namespace HouseRentingSystem.Data
         public DbSet<StarLists> StarLists { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<AdvertisementGallery> AdvertisementGallery { get; set; }
+        public DbSet<HouseRentingSystem.Models.SignUpUserModel> SignUpUserModel { get; set; }
+        public DbSet<HouseRentingSystem.Models.SignInModel> SignInModel { get; set; }
     }
 }
