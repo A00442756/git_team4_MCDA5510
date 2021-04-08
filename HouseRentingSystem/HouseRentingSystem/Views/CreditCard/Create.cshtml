@@ -7,44 +7,45 @@
 <div class="container">
     <h1>Add a Credit Card</h1>
 
-    <h4>CreditCardModel</h4>
+<!-- <h4>CreditCardModel</h4>-->
     <hr />
     <div class="row">
         <div class="col-md-4">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 @*            <div class="form-group" hidden="true">
-                        <label asp-for="Userid" class="control-label"></label>
-                        <input asp-for="Userid" class="form-control" />
-                        <span asp-validation-for="Userid" class="text-danger"></span>
-                    </div>*@
+        <label asp-for="Userid" class="control-label"></label>
+        <input asp-for="Userid" class="form-control" />
+        <span asp-validation-for="Userid" class="text-danger"></span>
+        </div>*@
+
+                <div class="form-group">
+                    <label asp-for="Cardtype" class="control-label"></label>
+                    <select asp-for="Cardtype" class="form-control">
+                        <option>Select card type</option>
+                        <option>MasterCard</option>
+                        <option>Visa</option>
+                        <option>American Express</option>
+                    </select>
+                    <span asp-validation-for="Cardtype" class="text-danger"></span>
+                </div>
+
                 <div class="form-group">
                     <label asp-for="CardHolderName" class="control-label"></label>
                     <input asp-for="CardHolderName" class="form-control" />
                     <span asp-validation-for="CardHolderName" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
                     <label asp-for="Cardnumber" class="control-label"></label>
                     <input asp-for="Cardnumber" class="form-control" />
                     <span asp-validation-for="Cardnumber" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Cardtype" class="control-label"></label>
-                    <select asp-for="Cardtype" class="form-control">
-                        <option>Visa</option>
-                        <option>Master</option>
-                        <option>Others</option>
-                    </select>
-                    <span asp-validation-for="Cardtype" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Expireyear" class="control-label"></label>
-                    <input asp-for="Expireyear" class="form-control" />
-                    <span asp-validation-for="Expireyear" class="text-danger"></span>
-                </div>
+
                 <div class="form-group">
                     <label asp-for="Expiremonth" class="control-label"></label>
                     <select asp-for="Expiremonth" class="form-control">
+                        <option selected>Select month</option>
                         <option>Jan</option>
                         <option>Feb</option>
                         <option>Mar</option>
@@ -60,6 +61,34 @@
                     </select>
                     <span asp-validation-for="Expiremonth" class="text-danger"></span>
                 </div>
+
+                <div class="form-group">
+                    <label asp-for="Expireyear" class="control-label"></label>
+                    <!-- <input asp-for="Expireyear" class="form-control" /> -->
+                    <select asp-for="Expireyear" class="form-control">
+                        <option selected>Select year</option>
+                        <option>2021</option>
+                        <option>2022</option>
+                        <option>2023</option>
+                        <option>2024</option>
+                        <option>2025</option>
+                        <option>2026</option>
+                        <option>2027</option>
+                        <option>2028</option>
+                        <option>2029</option>
+                        <option>2030</option>
+                        <option>2031</option>
+                        <option>2032</option>
+                        <option>2033</option>
+                        <option>2034</option>
+                        <option>2035</option>
+
+                    </select>
+                    <span asp-validation-for="Expireyear" class="text-danger"></span>
+                </div>
+
+
+
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
