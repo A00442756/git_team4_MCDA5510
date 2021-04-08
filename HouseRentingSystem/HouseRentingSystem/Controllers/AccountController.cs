@@ -63,5 +63,12 @@ namespace HouseRentingSystem.Controllers
             return View(signInModel);
         }
 
+        [Route("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _accoutnRepository.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }
