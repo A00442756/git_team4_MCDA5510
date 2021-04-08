@@ -37,9 +37,10 @@ namespace HouseRentingSystem.Controllers
             return View(advertisement);
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editad(int Adid, [Bind("Adid,Userid,Ondisplay,Title,Rental,Description,Country,Province,City,Streetname,Streetnum,Bedroomsnum,Bathroomsnum,Hydro,Heat,Water,Internet,Parkingnum,Agreementtype,Moveindate,Petfriendly,Size,Furnished,Laundry,Dishwasher,Fridge,Airconditioning,Smokingpermit")] AdvertisementModel advertisement)
+        public async Task<IActionResult> Editad(int Adid, [Bind("Adid,Userid,Ondisplay,Title,Rental,PostalCode,ContactPhoneNum,Description,Country,Province,City,Streetname,Streetnum,Bedroomsnum,Bathroomsnum,Hydro,Heat,Water,Internet,Parkingnum,Agreementtype,Moveindate,Petfriendly,Size,Furnished,Laundry,Dishwasher,Fridge,Airconditioning,Smokingpermit")] AdvertisementModel advertisement)
         {
             if (Adid != advertisement.Adid)
             {
