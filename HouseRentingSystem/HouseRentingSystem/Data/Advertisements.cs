@@ -15,6 +15,8 @@ namespace HouseRentingSystem.Data
         public int Userid { get; set; }
         public bool Ondisplay { get; set; }
         public string Title { get; set; }
+        public string PostalCode { get; set; }
+        public string ContactPhoneNum { get; set; }
         public int Rental { get; set; }
         public string Description { get; set; }
         public string Country { get; set; }

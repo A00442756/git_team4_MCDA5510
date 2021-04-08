@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HouseRentingSystem.Repository
 {
-    public class CreditCardRepository
+    public class CreditCardRepository : ICreditCardRepository
     {
         private readonly HouseRentingSystemDBContext _context = null;
 
@@ -45,7 +45,7 @@ namespace HouseRentingSystem.Repository
         public async Task<CreditCardModel> GetCreditCardByCid(int cid)
         {
             return await _context.CreditCards.Where(x => x.Cid == cid)
-                .Select(creditcard=>new CreditCardModel()
+                .Select(creditcard => new CreditCardModel()
                 {
                     Cid = creditcard.Cid,
                     Userid = creditcard.Userid,
@@ -56,7 +56,7 @@ namespace HouseRentingSystem.Repository
                     CardHolderName = creditcard.CardHolderName
 
                 }).FirstOrDefaultAsync();
-         }
+        }
 
         public async Task<int> AddNewCreditCard(CreditCardModel cardModel)
         {

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HouseRentingSystem.Data;
 using HouseRentingSystem.Repository;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using HouseRentingSystem.Models;
 
 namespace HouseRentingSystem
@@ -25,6 +26,19 @@ namespace HouseRentingSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreditCardValidator>());
+            services.AddControllersWithViews();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<HouseRentingSystemDBContext>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 5;
+                options.Password.RequiredUniqueChars = 1;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+
+            });
 #if DEBUG   
             //only valid on development environment
             //auto rebuild razorpages when any razor change is saved
@@ -33,8 +47,9 @@ namespace HouseRentingSystem
             //dependency injection connectionstring to dbcontext instead of using hardcode in
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<HouseRentingSystemDBContext>(options => options.UseSqlServer(connectionstring));
-            services.AddScoped<AdvertisementRepository, AdvertisementRepository>();
-            services.AddScoped<CreditCardRepository, CreditCardRepository>();
+            services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
+            services.AddScoped<ICreditCardRepository, CreditCardRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
