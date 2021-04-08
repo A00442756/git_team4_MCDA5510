@@ -42,5 +42,26 @@ namespace HouseRentingSystem.Controllers
             }
             return View(signUpUserModel);
         }
+        [Route("signin")]
+        public IActionResult Signin()
+        {
+            return View();
+        }
+        [Route("signin")]
+        [HttpPost]
+        public async Task<IActionResult> Signin(SignInModel signInModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _accoutnRepository.PasswordSignAsync(signInModel);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("","Invalid credentials");
+            }
+            return View(signInModel);
+        }
+
     }
 }
