@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
-using FluentValidation.AspNetCore;
 using FluentValidation;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
@@ -19,13 +18,18 @@ namespace HouseRentingSystem.Models
         [Key]
         public int Cid { get; set; }
         public int Userid { get; set; }
+        [Display(Name = "Card Number")]
         [Required(ErrorMessage = "Please enter the credit card number")]
         public string Cardnumber { get; set; }
+        [Display(Name = "Card Type")]
         public string Cardtype { get; set; }
+        [Display(Name = "Expiry Year")]
         [Required(ErrorMessage = "Please enter the expiry year on the credit card")]
         public string Expireyear { get; set; }
+        [Display(Name = "Expiry Month")]
         [Required(ErrorMessage = "Please enter the expiry month on the credit card")]
         public string Expiremonth { get; set; }
+        [Display(Name = "Name on Credit Card")]
         [Required(ErrorMessage = "Please enter the name on the credit card")]
         public string CardHolderName { get; set; }
     }
