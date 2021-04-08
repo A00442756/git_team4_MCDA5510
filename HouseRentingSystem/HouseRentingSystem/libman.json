@@ -37,6 +37,10 @@
       "provider": "unpkg",
       "library": "@babel/standalone@7.13.14",
       "destination": "wwwroot/babel/standalone/"
+    },
+    {
+      "library": "babel-standalone@6.26.0",
+      "destination": "wwwroot/lib/babel-standalone/"
     }
   ]
 }
