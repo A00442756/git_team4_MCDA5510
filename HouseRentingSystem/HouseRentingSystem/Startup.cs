@@ -25,10 +25,14 @@ namespace HouseRentingSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connectionstring = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<HouseRentingSystemDBContext>(options => options.UseSqlServer(connectionstring));
             services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreditCardValidator>());
-            services.AddControllersWithViews();
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<HouseRentingSystemDBContext>();
+                .AddEntityFrameworkStores<HouseRentingSystemDBContext>().AddDefaultTokenProviders();
+            /*services.AddControllersWithViews();*/
+/*            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<HouseRentingSystemDBContext>();*/
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 5;
@@ -45,8 +49,7 @@ namespace HouseRentingSystem
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
             //dependency injection connectionstring to dbcontext instead of using hardcode in
-            string connectionstring = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<HouseRentingSystemDBContext>(options => options.UseSqlServer(connectionstring));
+
             services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
             services.AddScoped<ICreditCardRepository, CreditCardRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
@@ -65,9 +68,11 @@ namespace HouseRentingSystem
             }
             app.UseStaticFiles();
 
-            app.UseRouting();
 
+            app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
