@@ -8,6 +8,7 @@ using HouseRentingSystem.Models;
 using HouseRentingSystem.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HouseRentingSystem.Controllers
 {
@@ -68,12 +69,15 @@ namespace HouseRentingSystem.Controllers
             return View(data);
         }
 
+        [Authorize]
         public async Task<ViewResult> managead(int UserId)
         {
             List<AdvertisementModel> modellist = await  _advertisementRepository.GetAdvertisementsByUserId(UserId);
             return View(modellist);
         }
 
+
+        [Authorize]
         public async Task<ViewResult> postad()
         {
             var model = new AdvertisementModel();
@@ -81,6 +85,7 @@ namespace HouseRentingSystem.Controllers
         }
 
         [HttpPost]
+        
         public async Task<IActionResult> postad(AdvertisementModel model)
         {
             if (ModelState.IsValid)

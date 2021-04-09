@@ -43,6 +43,10 @@ namespace HouseRentingSystem
                 options.Password.RequireUppercase = false;
 
             });
+            services.ConfigureApplicationCookie(Config =>
+            {
+                Config.LoginPath = "/Signin";
+            });
 #if DEBUG   
             //only valid on development environment
             //auto rebuild razorpages when any razor change is saved
