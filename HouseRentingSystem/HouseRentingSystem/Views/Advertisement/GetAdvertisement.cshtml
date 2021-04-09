@@ -3,6 +3,7 @@
 
 <div class="container">
     <h3 class="display-4">Advertisement details</h3>
+    <div id="example"></div>
     <div class="row">
         <div class="col-md-6">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -12,10 +13,10 @@
                     {
                         <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="@(i==0 ? "active" : "") "></li>
                     }
- 
+
                 </ol>
                 <div class="carousel-inner">
-                    @if (Model.Gallery.Count<1)
+                    @if (Model.Gallery.Count < 1)
                     {
                         <div class="carousel-item active">
                             <img class="d-block w-100" width="540px" height="274px" src="~/images/defalthouse.jpeg?auto=yes&bg=777&fg=555" alt="defalt img">
@@ -48,7 +49,7 @@
                 <div class="col-md-12 text-primary">
                     <span class="col-form-label">@Model.Country</span>
                     <span class="col-form-label">@Model.Province</span>
-                    <span class="col-form-label">@Model.City</span>
+                    <span class="col-form-label">@Model.City</span>                  
                     <span class="col-form-label">@Model.PostalCode</span>
                 </div>
             </div>
@@ -60,7 +61,7 @@
             <br />
             <div class="row">
                 <div class="col-md-4">
-                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
+                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" onclick="rentFunction()">
                         Rent now
                     </a>
                 </div>
@@ -90,7 +91,7 @@
             <div class="card-body">
                 <h5 class="card-title">Overview</h5>
 
-                
+
                 <p class="card-text"><img src="~/images/Advertisement/UtilitiesIncluded.png" width="20px" height="20px" alt="~/images/Advertisement/bed.png">Utilities Included</p>
                 <p class="card-text">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hydro:
@@ -195,7 +196,7 @@
                     {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
                     else
                     {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
-                </p>                
+                </p>
                 <p class="card-text">
 
                     <img width="20px" height="20px" src="~/images/Advertisement/laundry.png" />&nbsp;Laundry:
@@ -203,7 +204,7 @@
                     {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
                     else
                     {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
-                </p>                
+                </p>
                 <p class="card-text">
 
                     <img width="20px" height="20px" src="~/images/Advertisement/Fridge.png" />&nbsp;Fridge:
@@ -211,7 +212,7 @@
                     {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
                     else
                     {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
-                </p>                
+                </p>
                 <p class="card-text">
 
                     <img width="20px" height="20px" src="~/images/Advertisement/airconditioning.png" />&nbsp;Air-conditioning:
@@ -219,7 +220,7 @@
                     {<span><img width="20px" height="20px" src="~/images/Advertisement/check.png" /></span>}
                     else
                     {<span class="text-muted"><img width="20px" height="20px" src="~/images/Advertisement/error.png" /></span>}
-                </p>                
+                </p>
                 <p class="card-text">
 
                     <img width="20px" height="20px" class="imgicon" src="~/images/Advertisement/smoke.png" />&nbsp;Smoke-permited:
@@ -238,10 +239,76 @@
                     <img width="20px" height="20px" src="~/images/Advertisement/bed.png" />&nbsp;Bedroom number: <span>@Model.Bedroomsnum</span>
                 </p>
                 <p class="card-text">
-
                     <img width="20px" height="20px" class="imgicon" src="~/images/Advertisement/toilet.png" />&nbsp;Bathroom number: <span>@Model.Bathroomsnum</span>
                 </p>
             </div>
         </div>
     </div>
 </div>
+<input hidden="true" id="city" value="@Model.City"></input>
+
+
+@section Scripts
+{
+    @*<script src="~/js/advertisementlist.js" type="text/babel"></script>*@
+
+    @*    <script type="text/babel">
+            let mydom = <div>hello</div>
+            ReactDOM.render(mydom,document.getElementById("adlist"))
+        </script>*@
+<script type="text/babel">
+
+    class MyTown extends React.Component {
+        constructor(props) {
+            super(props)
+            this.state = {
+                city:"Halifax",
+                ctemprature: null,
+                ftemprature: null,
+                isShowCelsius: true,
+                displaytemparature:'loading temparature...'
+            }
+            this.fetchData = this.fetchData.bind(this);
+        }
+        render() {
+            return (
+                <div className="mytown-container">
+                  <div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <strong>Hint!</strong> Today's temparature in {this.setState.city} is {this.state.displaytemparature}
+                  </div>
+                </div>
+            )
+        }
+
+        componentDidMount() {
+            this.fetchData();
+            this.setState.city=document.getElementById("city").value;
+        }
+
+        fetchData() {
+            var city = document.getElementById("city").value;
+            var url ="https://api.openweathermap.org/data/2.5/weather?q=" +city+ "&appid=0993d8b599aa4b0eccb17b0e6445098a";
+            fetch(url)
+                .then(response => {
+                    return response.json()
+                })
+                .then(response => {
+
+                    var temp = (response.main.temp - 273.15).toFixed(2)
+                    this.setState({
+                        ctemprature: temp+'℃',
+                        ftemprature: temp*1.8+32+'°F',
+                        displaytemparature:temp+'℃'
+                    })
+                });
+        }
+    }
+
+            ReactDOM.render(
+
+              <MyTown/>,
+              document.getElementById('example')
+            );
+</script>
+}
