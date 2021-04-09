@@ -133,7 +133,10 @@ namespace HouseRentingSystem.Controllers
 
             var creditCardModel = _creditCardRepository.GetCreditCardByCid(id.Value);
 
-
+            if(!(_userService.GetUserId()== creditCardModel.Result.Userid))
+            {
+                return RedirectToAction("Index", "Creditcard");
+            }
             if (creditCardModel == null)
             {
                 return NotFound();

@@ -37,11 +37,24 @@ namespace HouseRentingSystem.Controllers
         {
 
             var advertisement = await _advertisementRepository.GetAdvertisementByAdId(adid);
+            
             if (advertisement == null)
             {
                 return NotFound();
             }
-            return View(advertisement);
+            else
+            {
+                if (_userService.GetUserId() == advertisement.Userid)
+                {
+                    return View(advertisement);
+                }
+                else
+                {
+                    return RedirectToAction("managead", "Advertisement");
+                }
+                    
+            }
+            
         }
 
 
@@ -56,6 +69,7 @@ namespace HouseRentingSystem.Controllers
 
             if (ModelState.IsValid)
             {
+                advertisement.Userid = _userService.GetUserId();
                 int returnAdid = await _advertisementRepository.EditAdvertisement(advertisement);
 
                 return RedirectToAction(nameof(GetAdvertisement), new{Adid= returnAdid });
@@ -65,7 +79,7 @@ namespace HouseRentingSystem.Controllers
 
         public async Task<ViewResult> GetAllAdvertisements()
         {
-            var data = await _advertisementRepository.GetAllAdvertisement();
+            var data = await _advertisementRepository.GetAllAdvertisementOndisplay();
             return View(data);
         }
 
