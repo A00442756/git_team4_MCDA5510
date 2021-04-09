@@ -118,10 +118,10 @@ namespace HouseRentingSystem.Repository
                 }).FirstOrDefaultAsync();
         }
 
-        public async Task<List<AdvertisementModel>> GetAllAdvertisement()
+        public async Task<List<AdvertisementModel>> GetAllAdvertisementOndisplay()
         {
             var advertisements = new List<AdvertisementModel>();
-            var allAdvertisements = await _context.Advertisements.ToListAsync();
+            var allAdvertisements = await _context.Advertisements.Where(x=>x.Ondisplay==true).ToListAsync();
             if (allAdvertisements?.Any() == true)
             {
                 foreach (var advertisement in allAdvertisements)
@@ -235,7 +235,7 @@ namespace HouseRentingSystem.Repository
             {
                 Adid = model.Adid,
                 Userid = model.Userid,
-                Ondisplay = true,
+                Ondisplay = model.Ondisplay,
                 Rental = model.Rental,
                 PostalCode = model.PostalCode,
                 ContactPhoneNum = model.ContactPhoneNum,
