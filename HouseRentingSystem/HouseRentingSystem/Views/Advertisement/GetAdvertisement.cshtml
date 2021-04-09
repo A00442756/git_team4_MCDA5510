@@ -8,7 +8,6 @@
         <div class="col-md-6">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-
                     @for (int i = 0; i < Model.Gallery.Count(); i++)
                     {
                         <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="@(i==0 ? "active" : "") "></li>
@@ -60,10 +59,26 @@
             </div>
             <br />
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <a class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" onclick="rentFunction()">
                         Rent now
                     </a>
+                    
+                </div>
+                <div class="col-md-4">
+                    @if (ViewBag.isFavourite == true)
+                    {
+                        <a asp-controller="Star" asp-action="AddStar" asp-route-AdId="@Model.Adid">
+                            <img width="20px" height="20px" src="~/images/star1.png" />Add to favourite
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Star" asp-action="RemoveStar" asp-route-AdId="@Model.Adid">
+                            <img width="20px" height="20px" src="~/images/star2.png" />Remove from favourite
+                        </a>
+                    }
+
                 </div>
             </div>
 

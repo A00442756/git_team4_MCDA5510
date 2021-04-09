@@ -16,6 +16,59 @@ namespace HouseRentingSystem.Repository
         {
             _context = context;
         }
+        public async Task<List<AdvertisementModel>> GetStarListAdvertisementsByUserId(int UserID)
+        {
+            List<AdvertisementModel> adModelList = new List<AdvertisementModel>();
+            var starList = _context.StarLists.Where(x => x.Userid == UserID).ToListAsync();
+            List<int> adidList = new List<int>();
+            foreach(var star in starList.Result)
+            {
+                adidList.Add(star.Adid);
+            }
+            var advertisements = await _context.Advertisements.Where(x => adidList.Contains(x.Adid) ).ToListAsync();
+            if (advertisements?.Any() == true)
+            {
+                foreach (var advertisement in advertisements)
+                {
+                    adModelList.Add(new AdvertisementModel()
+                    {
+                        Adid = advertisement.Adid,
+                        Userid = advertisement.Userid,
+                        Rental = advertisement.Rental,
+                        Ondisplay = advertisement.Ondisplay,
+                        PostalCode = advertisement.PostalCode,
+                        ContactPhoneNum = advertisement.ContactPhoneNum,
+                        Title = advertisement.Title,
+                        Description = advertisement.Description,
+                        Country = advertisement.Country,
+                        Province = advertisement.Province,
+                        City = advertisement.City,
+                        Streetname = advertisement.Streetname,
+                        Streetnum = advertisement.Streetnum,
+                        Bedroomsnum = advertisement.Bedroomsnum,
+                        Bathroomsnum = advertisement.Bathroomsnum,
+                        Hydro = advertisement.Hydro,
+                        Heat = advertisement.Heat,
+                        Water = advertisement.Water,
+                        Internet = advertisement.Internet,
+                        Parkingnum = advertisement.Parkingnum,
+                        Agreementtype = advertisement.Agreementtype,
+                        Moveindate = advertisement.Moveindate,
+                        Petfriendly = advertisement.Petfriendly,
+                        Size = advertisement.Size,
+                        Furnished = advertisement.Furnished,
+                        Laundry = advertisement.Laundry,
+                        Dishwasher = advertisement.Dishwasher,
+                        Fridge = advertisement.Fridge,
+                        Airconditioning = advertisement.Airconditioning,
+                        Smokingpermit = advertisement.Smokingpermit,
+                        Postdate = advertisement.Postdate,
+                    });
+                }
+            }
+
+            return adModelList;
+        }
 
         public async Task<List<AdvertisementModel>> GetAdvertisementsByUserId(int UserID)
         {
