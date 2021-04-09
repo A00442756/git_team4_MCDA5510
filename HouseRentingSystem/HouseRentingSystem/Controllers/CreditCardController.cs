@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using HouseRentingSystem.Data;
 using HouseRentingSystem.Models;
 using HouseRentingSystem.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HouseRentingSystem.Controllers
 {
+    [Authorize]
     public class CreditCardController : Controller
     {
         private readonly ICreditCardRepository _creditCardRepository = null;
@@ -21,6 +23,7 @@ namespace HouseRentingSystem.Controllers
         }
 
         // GET: CreditCard
+        
         public async Task<IActionResult> Index(int userid)
         {
             return View(await _creditCardRepository.GetCreditCardByUserid(userid));

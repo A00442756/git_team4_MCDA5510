@@ -49,13 +49,17 @@ namespace HouseRentingSystem.Controllers
         }
         [Route("signin")]
         [HttpPost]
-        public async Task<IActionResult> Signin(SignInModel signInModel)
+        public async Task<IActionResult> Signin(SignInModel signInModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 var result = await _accoutnRepository.PasswordSignAsync(signInModel);
                 if (result.Succeeded)
                 {
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return LocalRedirect(returnUrl);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("","Invalid credentials");
