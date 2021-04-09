@@ -29,7 +29,8 @@ namespace HouseRentingSystem
         {
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<HouseRentingSystemDBContext>(options => options.UseSqlServer(connectionstring));
-            services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreditCardValidator>());
+            //services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreditCardValidator>());
+            services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<PostAdValidator>());
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<HouseRentingSystemDBContext>().AddDefaultTokenProviders();
             /*services.AddControllersWithViews();*/
