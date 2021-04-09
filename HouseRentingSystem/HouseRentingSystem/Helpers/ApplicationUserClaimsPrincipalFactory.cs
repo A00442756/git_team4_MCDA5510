@@ -22,6 +22,7 @@ namespace HouseRentingSystem.Helpers
             var identity = await base.GenerateClaimsAsync(user);
             identity.AddClaim(new Claim ("UserFirstName",user.FirstName ?? ""));
             identity.AddClaim(new Claim ("UserLastName",user.LastName ?? ""));
+            identity.AddClaim(new Claim ("UserId",user.UserId.ToString()));
             return identity;
         }
     }
