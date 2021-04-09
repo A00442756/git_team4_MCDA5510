@@ -10,6 +10,7 @@ using HouseRentingSystem.Repository;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using HouseRentingSystem.Models;
+using HouseRentingSystem.Helpers;
 
 namespace HouseRentingSystem
 {
@@ -43,10 +44,8 @@ namespace HouseRentingSystem
                 options.Password.RequireUppercase = false;
 
             });
-            services.ConfigureApplicationCookie(Config =>
-            {
-                Config.LoginPath = "/Signin";
-            });
+
+            services.ConfigureApplicationCookie(config=> { config.LoginPath = "/signin"; });
 #if DEBUG   
             //only valid on development environment
             //auto rebuild razorpages when any razor change is saved
@@ -57,6 +56,7 @@ namespace HouseRentingSystem
             services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
             services.AddScoped<ICreditCardRepository, CreditCardRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

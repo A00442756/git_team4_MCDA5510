@@ -23,6 +23,7 @@ namespace HouseRentingSystem.Controllers
         }
 
         // GET: CreditCard
+        
         public async Task<IActionResult> Index(int userid)
         {
             return View(await _creditCardRepository.GetCreditCardByUserid(userid));

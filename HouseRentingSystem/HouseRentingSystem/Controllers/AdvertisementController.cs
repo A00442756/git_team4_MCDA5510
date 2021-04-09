@@ -27,6 +27,7 @@ namespace HouseRentingSystem.Controllers
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> Editad(int adid)
         {
 
