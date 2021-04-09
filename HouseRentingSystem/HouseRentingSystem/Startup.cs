@@ -11,6 +11,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using HouseRentingSystem.Models;
 using HouseRentingSystem.Helpers;
+using HouseRentingSystem.Service;
 
 namespace HouseRentingSystem
 {
