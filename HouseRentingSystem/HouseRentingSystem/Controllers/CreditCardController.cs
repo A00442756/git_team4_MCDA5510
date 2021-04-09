@@ -8,21 +8,28 @@ using Microsoft.EntityFrameworkCore;
 using HouseRentingSystem.Data;
 using HouseRentingSystem.Models;
 using HouseRentingSystem.Repository;
+using Microsoft.AspNetCore.Authorization;
+using HouseRentingSystem.Service;
 
 namespace HouseRentingSystem.Controllers
 {
+    [Authorize]
     public class CreditCardController : Controller
     {
         private readonly ICreditCardRepository _creditCardRepository = null;
+        private readonly IUserService _userService = null;
 
-        public CreditCardController(ICreditCardRepository creditCardRepository)
+        public CreditCardController(ICreditCardRepository creditCardRepository,
+            IUserService userService)
         {
             _creditCardRepository = creditCardRepository;
+            _userService = userService;
         }
 
         // GET: CreditCard
-        public async Task<IActionResult> Index(int userid)
+        public async Task<IActionResult> Index()
         {
+            var userid = _userService.GetUserId();
             return View(await _creditCardRepository.GetCreditCardByUserid(userid));
         }
 
@@ -58,6 +65,7 @@ namespace HouseRentingSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                creditCardModel.Userid = _userService.GetUserId();
                 await _creditCardRepository.AddNewCreditCard(creditCardModel);
                 return RedirectToAction(nameof(Index));
             }
@@ -125,7 +133,10 @@ namespace HouseRentingSystem.Controllers
 
             var creditCardModel = _creditCardRepository.GetCreditCardByCid(id.Value);
 
-
+            if(!(_userService.GetUserId()== creditCardModel.Result.Userid))
+            {
+                return RedirectToAction("Index", "Creditcard");
+            }
             if (creditCardModel == null)
             {
                 return NotFound();

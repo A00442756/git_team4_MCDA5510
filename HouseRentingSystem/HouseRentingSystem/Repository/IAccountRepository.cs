@@ -8,5 +8,6 @@ namespace HouseRentingSystem.Repository
     {
         Task<IdentityResult> CreateUserAsync(SignUpUserModel signUpUserModel);
         Task<SignInResult> PasswordSignAsync(SignInModel signInModel);
+        Task SignOutAsync();
     }
 }

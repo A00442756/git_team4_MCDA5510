@@ -8,6 +8,8 @@ using HouseRentingSystem.Models;
 using HouseRentingSystem.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using HouseRentingSystem.Service;
 
 namespace HouseRentingSystem.Controllers
 {
@@ -15,26 +17,44 @@ namespace HouseRentingSystem.Controllers
     {
         private readonly IAdvertisementRepository _advertisementRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment = null;
+        private readonly IUserService _userService=null;
+
         public AdvertisementController(IAdvertisementRepository advertisementRepository,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            IUserService userService)
         {
             _advertisementRepository = advertisementRepository;
             _webHostEnvironment = webHostEnvironment;
+            _userService = userService;
         }
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public async Task<IActionResult> Editad(int adid)
         {
 
             var advertisement = await _advertisementRepository.GetAdvertisementByAdId(adid);
+            
             if (advertisement == null)
             {
                 return NotFound();
             }
-            return View(advertisement);
+            else
+            {
+                if (_userService.GetUserId() == advertisement.Userid)
+                {
+                    return View(advertisement);
+                }
+                else
+                {
+                    return RedirectToAction("managead", "Advertisement");
+                }
+                    
+            }
+            
         }
 
 
@@ -49,6 +69,7 @@ namespace HouseRentingSystem.Controllers
 
             if (ModelState.IsValid)
             {
+                advertisement.Userid = _userService.GetUserId();
                 int returnAdid = await _advertisementRepository.EditAdvertisement(advertisement);
 
                 return RedirectToAction(nameof(GetAdvertisement), new{Adid= returnAdid });
@@ -58,7 +79,7 @@ namespace HouseRentingSystem.Controllers
 
         public async Task<ViewResult> GetAllAdvertisements()
         {
-            var data = await _advertisementRepository.GetAllAdvertisement();
+            var data = await _advertisementRepository.GetAllAdvertisementOndisplay();
             return View(data);
         }
 
@@ -68,12 +89,24 @@ namespace HouseRentingSystem.Controllers
             return View(data);
         }
 
-        public async Task<ViewResult> managead(int UserId)
+        [Authorize]
+        public async Task<IActionResult> managead()
         {
-            List<AdvertisementModel> modellist = await  _advertisementRepository.GetAdvertisementsByUserId(UserId);
-            return View(modellist);
+            if (_userService.IsAuthenticated())
+            {
+                var userid = _userService.GetUserId();
+                List<AdvertisementModel> modellist = await _advertisementRepository.GetAdvertisementsByUserId(userid);
+                return View(modellist);
+            }
+            else
+            {
+                return RedirectToAction("signin", "Account");
+            }
+
         }
 
+
+        [Authorize]
         public async Task<ViewResult> postad()
         {
             var model = new AdvertisementModel();
@@ -81,10 +114,12 @@ namespace HouseRentingSystem.Controllers
         }
 
         [HttpPost]
+        
         public async Task<IActionResult> postad(AdvertisementModel model)
         {
             if (ModelState.IsValid)
             {
+                model.Userid = _userService.GetUserId();
                 if (model.GalleryFiles != null)
                 {
                     string folder = "advertisement/gallery/";
