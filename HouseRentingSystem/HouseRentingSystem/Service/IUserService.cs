@@ -2,7 +2,7 @@
 {
     public interface IUserService
     {
-        string GetUserId();
+        int GetUserId();
         bool IsAuthenticated();
     }
 }

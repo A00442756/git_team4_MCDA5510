@@ -12,6 +12,8 @@ namespace HouseRentingSystem.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
+        public int UserId { get; set; }
 
     }
 }

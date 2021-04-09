@@ -2,7 +2,7 @@
 
 namespace HouseRentingSystem.Migrations
 {
-    public partial class change1colUserId2 : Migration
+    public partial class recreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

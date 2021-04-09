@@ -9,6 +9,7 @@ using HouseRentingSystem.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
+using HouseRentingSystem.Service;
 
 namespace HouseRentingSystem.Controllers
 {
@@ -16,11 +17,15 @@ namespace HouseRentingSystem.Controllers
     {
         private readonly IAdvertisementRepository _advertisementRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment = null;
+        private readonly IUserService _userService=null;
+
         public AdvertisementController(IAdvertisementRepository advertisementRepository,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            IUserService userService)
         {
             _advertisementRepository = advertisementRepository;
             _webHostEnvironment = webHostEnvironment;
+            _userService = userService;
         }
         public IActionResult Index()
         {
@@ -71,10 +76,19 @@ namespace HouseRentingSystem.Controllers
         }
 
         [Authorize]
-        public async Task<ViewResult> managead(int UserId)
+        public async Task<IActionResult> managead()
         {
-            List<AdvertisementModel> modellist = await  _advertisementRepository.GetAdvertisementsByUserId(UserId);
-            return View(modellist);
+            if (_userService.IsAuthenticated())
+            {
+                var userid = _userService.GetUserId();
+                List<AdvertisementModel> modellist = await _advertisementRepository.GetAdvertisementsByUserId(userid);
+                return View(modellist);
+            }
+            else
+            {
+                return RedirectToAction("signin", "Account");
+            }
+
         }
 
         [Authorize]
@@ -89,6 +103,7 @@ namespace HouseRentingSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.Userid = _userService.GetUserId();
                 if (model.GalleryFiles != null)
                 {
                     string folder = "advertisement/gallery/";

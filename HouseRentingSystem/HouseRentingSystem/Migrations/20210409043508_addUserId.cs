@@ -2,28 +2,23 @@
 
 namespace HouseRentingSystem.Migrations
 {
-    public partial class change1colUserId : Migration
+    public partial class addUserId : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
+            migrationBuilder.AddColumn<int>(
                 name: "UserId",
                 table: "AspNetUsers",
                 nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int")
+                defaultValue: 0)
                 .Annotation("SqlServer:Identity", "1, 1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
+            migrationBuilder.DropColumn(
                 name: "UserId",
-                table: "AspNetUsers",
-                type: "int",
-                nullable: false,
-                oldClrType: typeof(int))
-                .OldAnnotation("SqlServer:Identity", "1, 1");
+                table: "AspNetUsers");
         }
     }
 }
