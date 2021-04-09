@@ -16,14 +16,17 @@ namespace HouseRentingSystem.Controllers
     public class AdvertisementController : Controller
     {
         private readonly IAdvertisementRepository _advertisementRepository = null;
+        private readonly IStarRepository _starRepository = null;
         private readonly IWebHostEnvironment _webHostEnvironment = null;
         private readonly IUserService _userService=null;
 
         public AdvertisementController(IAdvertisementRepository advertisementRepository,
             IWebHostEnvironment webHostEnvironment,
+            IStarRepository starRepository,
             IUserService userService)
         {
             _advertisementRepository = advertisementRepository;
+            _starRepository = starRepository;
             _webHostEnvironment = webHostEnvironment;
             _userService = userService;
         }
@@ -86,6 +89,7 @@ namespace HouseRentingSystem.Controllers
         public async Task<ViewResult> GetAdvertisement(int AdId)
         {
             var data = await _advertisementRepository.GetAdvertisementByAdId(AdId);
+            ViewBag.isFavourite = _starRepository.IsFavourite(AdId, _userService.GetUserId());
             return View(data);
         }
 
