@@ -10,6 +10,7 @@ namespace HouseRentingSystem.Repository
         Task<int> EditAdvertisement(AdvertisementModel model);
         Task<AdvertisementModel> GetAdvertisementByAdId(int AdId);
         Task<List<AdvertisementModel>> GetAdvertisementsByUserId(int UserID);
+        Task<List<AdvertisementModel>> GetStarListAdvertisementsByUserId(int UserID);
         Task<List<AdvertisementModel>> GetAllAdvertisementOndisplay();
     }
 }
