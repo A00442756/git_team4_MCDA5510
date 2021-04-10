@@ -36,6 +36,7 @@ namespace HouseRentingSystem.Controllers
         {
             var userid = _userService.GetUserId();
             ViewBag.Adid = adid;
+            ViewBag.returnUrl = "/Contract/Select";
             return View(await _creditCardRepository.GetCreditCardByUserid(userid));
         }
 
@@ -44,6 +45,25 @@ namespace HouseRentingSystem.Controllers
             var tenantid = _userService.GetUserId();
             await _contractRepository.AddContract(adid,cid,tenantid);
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: CreditCard/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Cid,Userid,Cardnumber,Cardtype,Expireyear,Expiremonth,CardHolderName")] CreditCardModel creditCardModel)
+        {
+            if (ModelState.IsValid)
+            {
+                creditCardModel.Userid = _userService.GetUserId();
+                await _creditCardRepository.AddNewCreditCard(creditCardModel);
+                return RedirectToAction(nameof(Select));
+            }
+            return View(creditCardModel);
         }
     }
 }

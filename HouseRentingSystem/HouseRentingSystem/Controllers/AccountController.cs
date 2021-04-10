@@ -40,7 +40,8 @@ namespace HouseRentingSystem.Controllers
                 }
                 ModelState.Clear();
             }
-            return View(signUpUserModel);
+            //return View(signUpUserModel);
+            return RedirectToAction(nameof(Signin));
         }
         [Route("signin")]
         public IActionResult Signin()
