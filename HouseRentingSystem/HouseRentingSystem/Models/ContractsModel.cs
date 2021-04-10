@@ -12,12 +12,10 @@ namespace HouseRentingSystem.Models
     {
         [Key]
         public int Contractid { get; set; }
-        public int Houseownerid { get; set; }
-        public int Tenantid { get; set; }
+        public string HouseownerName { get; set; }
+        public string TenantName { get; set; }
         public DateTime Startdate { get; set; }
-        public DateTime Enddate { get; set; }
         public int Adid { get; set; }
-        public bool? Deal { get; set; }
         public int Monthlyrent { get; set; }
     }
 }

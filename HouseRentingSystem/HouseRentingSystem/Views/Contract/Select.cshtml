@@ -1,0 +1,55 @@
+﻿@model IEnumerable<HouseRentingSystem.Models.CreditCardModel>
+@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <h1>Credit Cards</h1>
+
+    <p>
+        @*<a asp-controller="Contract" asp-action="Create" asp-route-adid="@ViewBag.adid">Create New</a>*@
+        <a href="/Contract/Create?adid=@ViewBag.adid">Create New</a><div></div>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CardHolderName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cardnumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cardtype)
+                </th>
+                <th @*hidden="hidden"*@>@Html.DisplayNameFor(model => model.adid)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CardHolderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cardnumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cardtype)
+                </td>
+                <td>
+
+                    <a asp-controller="Contract" asp-action="Rent" asp-route-cid="@item.Cid" asp-route-adid="@ViewBag.adid">Rent with this card</a>
+                </td>
+                <td hidden="hidden" >
+                    @Html.DisplayFor(modelItem => item.adid)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

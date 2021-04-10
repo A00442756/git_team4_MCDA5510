@@ -58,6 +58,7 @@ namespace HouseRentingSystem
             services.AddScoped<ICreditCardRepository, CreditCardRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IStarRepository, StarRepository>();
+            services.AddScoped<IContractRepository, ContractRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
         }

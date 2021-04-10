@@ -4,14 +4,16 @@ using HouseRentingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HouseRentingSystem.Migrations
 {
     [DbContext(typeof(HouseRentingSystemDBContext))]
-    partial class HouseRentingSystemDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210410074352_addcreditcardid")]
+    partial class addcreditcardid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,9 +64,6 @@ namespace HouseRentingSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactPerson")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContactPhoneNum")
@@ -165,9 +164,6 @@ namespace HouseRentingSystem.Migrations
 
                     b.Property<DateTime>("Enddate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("HouseownerName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Houseownerid")
                         .HasColumnType("int");

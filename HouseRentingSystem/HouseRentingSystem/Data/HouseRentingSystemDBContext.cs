@@ -17,5 +17,6 @@ namespace HouseRentingSystem.Data
         public DbSet<StarLists> StarLists { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<AdvertisementGallery> AdvertisementGallery { get; set; }
+        public DbSet<HouseRentingSystem.Models.ContractsModel> ContractsModel { get; set; }
     }
 }

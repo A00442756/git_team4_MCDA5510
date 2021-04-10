@@ -44,6 +44,11 @@
                     <span asp-validation-for="PostalCode" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="ContactPerson" class="control-label"></label>
+                    <input asp-for="ContactPerson" class="form-control" />
+                    <span asp-validation-for="ContactPerson" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="ContactPhoneNum" class="control-label"></label>
                     <input asp-for="ContactPhoneNum" class="form-control" />
                     <span asp-validation-for="ContactPhoneNum" class="text-danger"></span>
@@ -113,14 +118,14 @@
                     <input asp-for="Size" class="form-control" />
                     <span asp-validation-for="Size" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+@*                <div class="form-group">
                     <label asp-for="GalleryFiles" class="control-label"></label>
                     <div class="custom-file">
                         <input asp-for="GalleryFiles" class="custom-file-input" id="customFile">
                         <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                     <span asp-validation-for="GalleryFiles" class="text-danger"></span>
-                </div>
+                </div>*@
                 <div class="form-group form-check">
                     <label class="form-check-label">
                         <input class="form-check-input" asp-for="Hydro" /> @Html.DisplayNameFor(model => model.Hydro)
