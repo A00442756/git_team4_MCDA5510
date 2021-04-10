@@ -115,7 +115,7 @@ namespace HouseRentingSystem.Models
         public DateTime Postdate { get; set; }
 
         [Display(Name = "Choose the gallery images of the house/apartment")]
-        [Required(ErrorMessage = "Please upload at least one picture")]
+        //[Required(ErrorMessage = "Please upload at least one picture")]
         public IFormFileCollection GalleryFiles { get; set; }
 
         public List<GalleryModel> Gallery { get; set; }
@@ -152,8 +152,12 @@ namespace HouseRentingSystem.Models
             RuleFor(x => x.City)
                 .Matches(@"^[^(;|:|!|@|#|$|%|^|*|+|?|\|/|<|>|1|2|3|4|5|6|7|8|9|0)]{1,}")
                 .WithMessage("City must not include any of ; : ! @ # $ % ^ * + ? \\ / < > 1 2 3 4 5 6 7 8 9 0");
+            
             RuleFor(x => x.Moveindate)
-                .GreaterThan(DateTime.Today).WithMessage("Please enter a date ahead of today");
+                .GreaterThanOrEqualTo(DateTime.Today).WithMessage("Please enter a date today or greater");
+            
+            RuleFor(x => x.Gallery)
+                .NotEmpty().WithMessage("Please upload at least one picture");
         }
     }
 }
