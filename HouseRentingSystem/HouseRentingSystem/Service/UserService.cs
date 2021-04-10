@@ -17,10 +17,14 @@ namespace HouseRentingSystem.Service
 
         public int GetUserId()
         {
-            //_httpContext.HttpContext.User.FindFirst("UserId").Value;
+            //_httpContext.HttpContext.User.FindFirst("UserName").Value;
             //var a = _httpContext.HttpContext.User.FindFirst("UserId").Value;
             return int.Parse(_httpContext.HttpContext.User.FindFirst("UserId").Value);
             //return _httpContext.HttpContext.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+        }
+
+        public string GetUserName() {
+            return _httpContext.HttpContext.User.FindFirst("UserFirstName").Value + " " + _httpContext.HttpContext.User.FindFirst("UserLastName").Value;
         }
         public bool IsAuthenticated()
         {

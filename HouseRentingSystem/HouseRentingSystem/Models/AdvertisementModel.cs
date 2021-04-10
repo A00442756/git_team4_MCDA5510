@@ -27,6 +27,9 @@ namespace HouseRentingSystem.Models
         [Display(Name = "Contact phone number")]
         [Required]
         public string ContactPhoneNum { get; set; }
+        [Display(Name = "Contact person name")]
+        [Required]
+        public string ContactPerson { get; set; }
         [Display(Name = "Price (CAD)")]
         [Required]
         public int Rental { get; set; }

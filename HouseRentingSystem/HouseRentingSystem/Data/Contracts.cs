@@ -12,7 +12,9 @@ namespace HouseRentingSystem.Data
     {
         [Key]
         public int Contractid { get; set; }
+        public int CreditCardId { get; set; }
         public int Houseownerid { get; set; }
+        public string HouseownerName { get; set; }
         public int Tenantid { get; set; }
         public DateTime Startdate { get; set; }
         public DateTime Enddate { get; set; }
