@@ -12,7 +12,7 @@
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="Create">
+            <form asp-action="Create" asp-route-adid="@ViewBag.adid">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 @*            <div class="form-group" hidden="true">
         <label asp-for="Userid" class="control-label"></label>
@@ -87,8 +87,6 @@
                     </select>
                     <span asp-validation-for="Expireyear" class="text-danger"></span>
                 </div>
-
-
 
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />

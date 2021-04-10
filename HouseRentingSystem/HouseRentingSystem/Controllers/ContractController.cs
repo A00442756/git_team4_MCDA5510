@@ -37,7 +37,12 @@ namespace HouseRentingSystem.Controllers
             var userid = _userService.GetUserId();
             ViewBag.Adid = adid;
             ViewBag.returnUrl = "/Contract/Select";
-            return View(await _creditCardRepository.GetCreditCardByUserid(userid));
+            var model = await _creditCardRepository.GetCreditCardByUserid(userid);
+            foreach(var m in model)
+            {
+                m.adid = adid;
+            }
+            return View(model);
         }
 
         public async Task<IActionResult> Rent(int cid, int adid)
@@ -48,20 +53,22 @@ namespace HouseRentingSystem.Controllers
         }
 
         // GET: CreditCard/Create
-        public IActionResult Create()
+        public IActionResult Create(int adid)
         {
+            ViewBag.adid = adid;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Cid,Userid,Cardnumber,Cardtype,Expireyear,Expiremonth,CardHolderName")] CreditCardModel creditCardModel)
+        public async Task<IActionResult> Create([Bind("Cid,Userid,Cardnumber,Cardtype,Expireyear,Expiremonth,CardHolderName,adid")] CreditCardModel creditCardModel)
         {
             if (ModelState.IsValid)
             {
                 creditCardModel.Userid = _userService.GetUserId();
                 await _creditCardRepository.AddNewCreditCard(creditCardModel);
-                return RedirectToAction(nameof(Select));
+                ViewBag.adid = creditCardModel.adid;
+                return RedirectToAction(nameof(Select),new {adid= creditCardModel.adid });
             }
             return View(creditCardModel);
         }

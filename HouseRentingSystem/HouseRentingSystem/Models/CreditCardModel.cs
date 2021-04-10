@@ -32,6 +32,7 @@ namespace HouseRentingSystem.Models
         [Display(Name = "Name on Credit Card")]
         [Required(ErrorMessage = "Please enter the name on the credit card")]
         public string CardHolderName { get; set; }
+        public int adid { get; set; }
     }
 
     public class CreditCardValidator : AbstractValidator<CreditCardModel>
