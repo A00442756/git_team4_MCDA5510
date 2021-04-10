@@ -44,7 +44,7 @@
 
                     <a asp-controller="Contract" asp-action="Rent" asp-route-cid="@item.Cid" asp-route-adid="@ViewBag.adid">Rent with this card</a>
                 </td>
-                <td hidden="hidden">
+                <td hidden="hidden" >
                     @Html.DisplayFor(modelItem => item.adid)
                 </td>
             </tr>
