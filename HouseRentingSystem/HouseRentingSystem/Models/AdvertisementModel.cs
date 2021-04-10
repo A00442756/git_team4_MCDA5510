@@ -156,8 +156,8 @@ namespace HouseRentingSystem.Models
             RuleFor(x => x.Moveindate)
                 .GreaterThanOrEqualTo(DateTime.Today).WithMessage("Please enter a date today or greater");
             
-            RuleFor(x => x.Gallery)
-                .NotEmpty().WithMessage("Please upload at least one picture");
+            //RuleFor(x => x.Gallery)
+            //    .NotEmpty().WithMessage("Please upload at least one picture");
         }
     }
 }
