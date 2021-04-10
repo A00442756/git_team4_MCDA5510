@@ -1,5 +1,6 @@
 ﻿using HouseRentingSystem.Repository;
 using HouseRentingSystem.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace HouseRentingSystem.Controllers
 {
+    [Authorize]
     public class StarController : Controller
     {
         private readonly IStarRepository _starRepository=null;
