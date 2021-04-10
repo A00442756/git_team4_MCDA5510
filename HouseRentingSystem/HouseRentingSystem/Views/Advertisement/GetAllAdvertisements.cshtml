@@ -12,17 +12,15 @@
         {
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src=@(advertisement.Gallery != null&&advertisement.Gallery.Count>0 ? @advertisement.Gallery[0].URL : "/images/defalthouse.jpeg") class="img-thumbnail" />
+                    <img src="@(advertisement.Gallery != null&&advertisement.Gallery.Count>0 ? advertisement.Gallery[0].URL : "/images/defalthouse.jpeg")" class="img-thumbnail" />
                     <div class="card-body">
                         <h3 class="card-title">@(string.IsNullOrEmpty(advertisement.Title) ? "Name is not available" : advertisement.Title)</h3>
-                        <p class="card-text">@(string.IsNullOrEmpty(advertisement.Description) ? "Description is not availabe": advertisement.Description)</p>
+                        <p class="card-text">@(string.IsNullOrEmpty(advertisement.Description) ? "Description is not availabe": advertisement.Description.Substring(0, advertisement.Description.Length>200 ? 200 : advertisement.Description.Length)+"...")</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a asp-controller="Advertisement" asp-action="GetAdvertisement" asp-route-AdId="@advertisement.Adid"
-                                   class="btn btn-sm btn-outline-secondary">View details</a>@*<i class="fa fa-shopping-cart"></i>*@
-
+                                   class="btn btn-sm btn-outline-secondary">View details</a>
                             </div>
-
                             <small class="text-muted">@(string.IsNullOrEmpty(advertisement.Streetname) ? "NA" : advertisement.Streetname)</small>
                         </div>
                     </div>

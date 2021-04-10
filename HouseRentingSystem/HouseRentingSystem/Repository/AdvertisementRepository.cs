@@ -30,6 +30,7 @@ namespace HouseRentingSystem.Repository
             {
                 foreach (var advertisement in advertisements)
                 {
+                    var adg = _context.AdvertisementGallery.Where(x => x.AdvertisementAdid == advertisement.Adid).ToList();
                     adModelList.Add(new AdvertisementModel()
                     {
                         Adid = advertisement.Adid,
@@ -63,6 +64,12 @@ namespace HouseRentingSystem.Repository
                         Airconditioning = advertisement.Airconditioning,
                         Smokingpermit = advertisement.Smokingpermit,
                         Postdate = advertisement.Postdate,
+                        Gallery = adg != null ? adg.Select(g => new GalleryModel()
+                        {
+                            Id = g.Id,
+                            URL = g.URL,
+                            Name = g.Name
+                        }).ToList() : null
                     });
                 }
             }

@@ -60,15 +60,15 @@ namespace HouseRentingSystem.Models
         [Required]
         public bool Hydro { get; set; }
 
-        [Display(Name = "Select if the house/apartment provides heater")]
+        [Display(Name = "Heater")]
         [Required]
         public bool Heat { get; set; }
 
-        [Display(Name = "Select if the house/apartment provides water")]
+        [Display(Name = "Water")]
         [Required]
         public bool Water { get; set; }
 
-        [Display(Name = "Select if the house/apartment provides internet")]
+        [Display(Name = "Internet")]
         [Required]
         public bool Internet { get; set; }
 
@@ -79,12 +79,12 @@ namespace HouseRentingSystem.Models
         [Display(Name = "Agreement type")]
         [Required]
         public string Agreementtype { get; set; }
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [Display(Name = "Move-in date")]
         [Required] public DateTime Moveindate { get; set; }
 
-        [Display(Name = "Select if the house/apartment permits pets")]
+        [Display(Name = "Pet friendly")]
         [Required]
         public bool Petfriendly { get; set; }
         [Display(Name = "House/Apartment size (sq ft)")]
@@ -92,30 +92,30 @@ namespace HouseRentingSystem.Models
         public int Size { get; set; }
         public bool Furnished { get; set; }
 
-        [Display(Name = "Select if the house/apartment provides laundry")]
+        [Display(Name = "Laundry")]
         [Required]
         public bool Laundry { get; set; }
 
-        [Display(Name = "Select if the house/apartment provides dishwasher")]
+        [Display(Name = "Dishwasher")]
         [Required]
         public bool Dishwasher { get; set; }
 
-        [Display(Name = "Select if the house/apartment provides fridge")]
+        [Display(Name = "Refrigerator")]
         [Required]
         public bool Fridge { get; set; }
 
-        [Display(Name = "Select if the house/apartment provides air condition")]
+        [Display(Name = "Air conditioning")]
         [Required]
         public bool Airconditioning { get; set; }
 
-        [Display(Name = "Select if your house/apartment permits smoking")]
+        [Display(Name = "Smoking permitted")]
         [Required]
         public bool Smokingpermit { get; set; }
         
         public DateTime Postdate { get; set; }
 
         [Display(Name = "Choose the gallery images of the house/apartment")]
-        //[Required]
+        //[Required(ErrorMessage = "Please upload at least one picture")]
         public IFormFileCollection GalleryFiles { get; set; }
 
         public List<GalleryModel> Gallery { get; set; }
@@ -152,6 +152,12 @@ namespace HouseRentingSystem.Models
             RuleFor(x => x.City)
                 .Matches(@"^[^(;|:|!|@|#|$|%|^|*|+|?|\|/|<|>|1|2|3|4|5|6|7|8|9|0)]{1,}")
                 .WithMessage("City must not include any of ; : ! @ # $ % ^ * + ? \\ / < > 1 2 3 4 5 6 7 8 9 0");
+            
+            RuleFor(x => x.Moveindate)
+                .GreaterThanOrEqualTo(DateTime.Today).WithMessage("Please enter a date today or greater");
+            
+            RuleFor(x => x.Gallery)
+                .NotEmpty().WithMessage("Please upload at least one picture");
         }
     }
 }
